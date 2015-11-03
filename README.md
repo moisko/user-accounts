@@ -2,10 +2,22 @@
 TesttaskforSeniorJavaWebDevelopers-061014-1301-44
 
 * Github repository - https://github.com/moisko/user-accounts
-* Jenkins build - 
-* How to build it:
-** From user-accounts dir, execute mvn clean install
-* In server.xml add the following for user-accounts application:
+
+* Jenkins build - http://www.boratino.com/jenkins/job/user-accounts/ws/target/
+
+* Application Server - Tomcat 7
+
+* Database - MySQL
+
+* System environment and used libraries - check out the pom.xml for more information
+
+* Connector/j driver should be installed in $CATALINA_HOME/lib dir
+
+* create account_schema db schema before deploying and starting the application
+
+* mvn clean install
+
+* In server.xml add the following context configuration for user-accounts application:
 <Context docBase="user-accounts" path="/user-accounts" reloadable="true" source="org.eclipse.jst.jee.server:user-accounts">
 	<Resource driverClassName="com.mysql.jdbc.Driver"
 		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
