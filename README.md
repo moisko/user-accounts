@@ -23,7 +23,8 @@ Setup:
 ------
 * create account_schema db schema before deploying and starting the application
 
-* In server.xml, add the following context configuration for user-accounts application:
+* In server.xml, add the following context configuration:
+
 <Context docBase="user-accounts" path="/user-accounts" reloadable="true" source="org.eclipse.jst.jee.server:user-accounts">
 	<Resource driverClassName="com.mysql.jdbc.Driver"
 		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
@@ -45,11 +46,7 @@ Setup:
 		validationQuery="select 1" />
 </Context>
 
-* clone the project from Github repo
-
-* mvn clean install
-
-* get the produced war from the previous step and deploy it
+* get latest development version from Jenkins CI server - see comments above
 
 # REST endpoints
 
