@@ -16,11 +16,12 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "getAllAccounts", query = "SELECT a.firstName, a.lastName, a.email, a.dateOfBirth FROM Account a ORDER BY a.dateOfBirth"),
+		@NamedQuery(name = "getAllAccounts", query = "SELECT a.id, a.firstName, a.lastName, a.email, a.dateOfBirth FROM Account a ORDER BY a.dateOfBirth"),
 		@NamedQuery(name = "getAccountById", query = "SELECT a FROM Account a WHERE a.id = :id") })
 @Table(name = "ACCOUNT")
 public class Account implements Serializable {
 
+	public static final String ID = "id";
 	public static final String FIRST_NAME = "firstName";
 	public static final String LAST_NAME = "lastName";
 	public static final String EMAIL = "email";

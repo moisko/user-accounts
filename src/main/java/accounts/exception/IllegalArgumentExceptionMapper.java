@@ -1,6 +1,7 @@
 package accounts.exception;
 
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.ExceptionMapper;
 
 public class IllegalArgumentExceptionMapper implements
@@ -8,7 +9,7 @@ public class IllegalArgumentExceptionMapper implements
 
 	@Override
 	public Response toResponse(IllegalArgumentException e) {
-		return Response.status(Response.Status.NOT_FOUND)
-				.entity(e.getMessage()).build();
+		return Response.status(Status.BAD_REQUEST).entity(e.getMessage())
+				.build();
 	}
 }

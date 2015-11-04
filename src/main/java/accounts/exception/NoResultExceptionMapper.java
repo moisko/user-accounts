@@ -2,6 +2,7 @@ package accounts.exception;
 
 import javax.persistence.NoResultException;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.ExceptionMapper;
 
 public class NoResultExceptionMapper implements
@@ -9,8 +10,7 @@ public class NoResultExceptionMapper implements
 
 	@Override
 	public Response toResponse(NoResultException e) {
-		return Response.status(Response.Status.NOT_FOUND)
-				.entity(e.getMessage()).build();
+		return Response.status(Status.NOT_FOUND).build();
 	}
 
 }

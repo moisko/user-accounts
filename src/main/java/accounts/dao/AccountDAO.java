@@ -11,6 +11,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import accounts.model.Account;
+import accounts.validation.AccountValidator;
 
 public class AccountDAO {
 
@@ -57,6 +58,7 @@ public class AccountDAO {
 	}
 
 	public void createAccount(Account account) {
+		AccountValidator.validate(account);
 		EntityManager em = emf.createEntityManager();
 		try {
 			persistAccountInDb(em, account);
@@ -80,6 +82,7 @@ public class AccountDAO {
 
 	public void updateAccount(Long id, String accountProperty,
 			String accountValue) throws ParseException {
+		AccountValidator.validateAccountProperty(accountProperty, accountValue);
 		EntityManager em = emf.createEntityManager();
 		try {
 			Account account = getAccountFromDb(em, id);
@@ -113,8 +116,8 @@ public class AccountDAO {
 			}
 				break;
 			default:
-				// TODO
-				break;
+				throw new IllegalArgumentException("Account property ["
+						+ accountProperty + "] does not exist");
 			}
 			et.commit();
 		} finally {
