@@ -12,7 +12,7 @@ public class NumberFormatExceptionMapper implements
 
 	@Override
 	public Response toResponse(NumberFormatException e) {
-		return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
+		return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
 	}
 
 }

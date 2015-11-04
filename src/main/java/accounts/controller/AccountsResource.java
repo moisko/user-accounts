@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
@@ -21,13 +22,18 @@ public class AccountsResource implements Accounts {
 	ServletContext servletContext;
 
 	@Context
+	ServletConfig servletConfig;
+
+	@Context
 	UriInfo uriInfo;
 
 	public Response getAccounts() {
 		EntityManagerFactory emf = (EntityManagerFactory) servletContext
 				.getAttribute("emf");
 		AccountDAO accountDAO = new AccountDAO(emf);
-		List<Account> accounts = accountDAO.getAccounts();
+		int maxResults = Integer.parseInt(servletConfig
+				.getInitParameter("max.results"));
+		List<Account> accounts = accountDAO.getAccounts(maxResults);
 		return Response.status(Status.OK).entity(accounts).build();
 	}
 
