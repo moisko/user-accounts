@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 import accounts.model.Account;
 
+@Path("/accounts")
 @Produces(MediaType.APPLICATION_JSON)
 public interface Accounts {
 

@@ -33,6 +33,6 @@
 
 	<servlet-mapping>
 		<servlet-name>Accounts CXF Servlet</servlet-name>
-		<url-pattern>/accounts/*</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 </web-app>
