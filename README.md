@@ -17,10 +17,10 @@ Environment:
 
 * Database - MySQL
 
-* Connector/j driver should be installed in $CATALINA_HOME/lib dir
-
 Setup:
 ------
+* Connector/j driver should be installed in $CATALINA_HOME/lib dir
+
 * create account_schema db schema before deploying and starting the application
 
 * In server.xml, add the following context configuration:
@@ -49,4 +49,5 @@ Setup:
 * get latest development version from Jenkins CI server - see comments above
 
 # REST endpoints
+See javadoc in Accounts
 
