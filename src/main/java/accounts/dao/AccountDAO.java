@@ -37,6 +37,7 @@ public class AccountDAO {
 	@SuppressWarnings("unchecked")
 	private List<Account> getAccountsFromDb(EntityManager em) {
 		Query q = em.createNamedQuery("getAllAccounts");
+		q.setMaxResults(10);
 		List<Account> allAccounts = (List<Account>) q.getResultList();
 		return allAccounts;
 	}
