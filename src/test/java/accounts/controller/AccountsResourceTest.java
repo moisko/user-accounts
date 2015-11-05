@@ -1,6 +1,6 @@
 package accounts.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.io.BufferedReader;
@@ -33,11 +33,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import accounts.exception.IllegalArgumentExceptionMapper;
-import accounts.exception.JsonParseExceptionMapper;
-import accounts.exception.NoResultExceptionMapper;
-import accounts.exception.NumberFormatExceptionMapper;
-import accounts.exception.ParseExceptionMapper;
-import accounts.exception.RollbackExceptionMapper;
 import accounts.gson.GsonJsonProvider;
 import accounts.model.Account;
 
@@ -83,12 +78,7 @@ public class AccountsResourceTest {
 		// Add all providers defined in DD
 		List<Object> providers = new ArrayList<Object>();
 		providers.add(new GsonJsonProvider<Account>());
-		providers.add(new NoResultExceptionMapper());
-		providers.add(new NumberFormatExceptionMapper());
-		providers.add(new JsonParseExceptionMapper());
 		providers.add(new IllegalArgumentExceptionMapper());
-		providers.add(new ParseExceptionMapper());
-		providers.add(new RollbackExceptionMapper());
 		sf.setProviders(providers);
 
 		sf.setAddress(ADDRESS);
