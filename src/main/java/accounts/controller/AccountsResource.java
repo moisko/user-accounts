@@ -13,6 +13,9 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+
 import accounts.dao.AccountDAO;
 import accounts.model.Account;
 
@@ -63,8 +66,9 @@ public class AccountsResource implements Accounts {
 				.getAttribute("emf");
 		AccountDAO accountDAO = new AccountDAO(emf);
 		accountDAO.deleteAccount(id);
-		return Response.status(Status.OK).entity("{\"accountId\":" + id + "}")
-				.build();
+		JsonObject jsonResponseObject = new JsonObject();
+		jsonResponseObject.add("accountId", new JsonPrimitive(id));
+		return Response.status(Status.OK).entity(jsonResponseObject).build();
 	}
 
 }
