@@ -63,7 +63,8 @@ public class AccountsResource implements Accounts {
 				.getAttribute("emf");
 		AccountDAO accountDAO = new AccountDAO(emf);
 		accountDAO.deleteAccount(id);
-		return Response.status(Status.OK).entity(id).build();
+		return Response.status(Status.OK).entity("{\"accountId\":" + id + "}")
+				.build();
 	}
 
 }

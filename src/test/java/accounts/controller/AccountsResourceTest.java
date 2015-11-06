@@ -278,7 +278,7 @@ public class AccountsResourceTest {
 	}
 
 	@Test
-	public void testDeleteAccount() {
+	public void testDeleteAccount() throws Exception {
 		server.getEndpoint().getInInterceptors().clear();
 
 		when(querySingleAccount.getSingleResult()).thenReturn(new Account());
@@ -303,6 +303,10 @@ public class AccountsResourceTest {
 		Response response = webClient.delete();
 
 		assertTrue(response.getStatus() == 200);
+
+		String responseString = readResponse((InputStream) response.getEntity());
+		assertTrue(responseString.contains("accountId"));
+		assertTrue(responseString.contains(":1"));
 	}
 
 	@Test
