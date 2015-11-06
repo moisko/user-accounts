@@ -33,6 +33,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import accounts.exception.IllegalArgumentExceptionMapper;
+import accounts.exception.NoResultExceptionMapper;
 import accounts.gson.GsonJsonProvider;
 import accounts.model.Account;
 
@@ -75,10 +76,11 @@ public class AccountsResourceTest {
 		sf.setResourceProvider(AccountsResource.class,
 				new SingletonResourceProvider(new AccountsResource()));
 
-		// Add all providers defined in DD
+		// Add only used providers
 		List<Object> providers = new ArrayList<Object>();
 		providers.add(new GsonJsonProvider<Account>());
 		providers.add(new IllegalArgumentExceptionMapper());
+		providers.add(new NoResultExceptionMapper());
 		sf.setProviders(providers);
 
 		sf.setAddress(ADDRESS);
@@ -88,21 +90,23 @@ public class AccountsResourceTest {
 
 	@Before
 	public void setUp() {
-		when(em.getTransaction()).thenReturn(et);
-		when(emf.createEntityManager()).thenReturn(em);
-		when(servletContext.getAttribute("emf")).thenReturn(emf);
-		when(servletConfig.getInitParameter("max.results")).thenReturn("10");
-
 		// Return predefined account from getAllAccounts operation
 		Account account = createSingleAccount();
 		List<Account> accounts = new ArrayList<Account>();
 		accounts.add(account);
 		when(queryAllAccounts.getResultList()).thenReturn(accounts);
 		when(querySingleAccount.getSingleResult()).thenReturn(account);
+
 		when(em.createNamedQuery("getAllAccounts"))
 				.thenReturn(queryAllAccounts);
 		when(em.createNamedQuery("getAccountById")).thenReturn(
 				querySingleAccount);
+		when(em.getTransaction()).thenReturn(et);
+
+		when(emf.createEntityManager()).thenReturn(em);
+
+		when(servletContext.getAttribute("emf")).thenReturn(emf);
+		when(servletConfig.getInitParameter("max.results")).thenReturn("10");
 
 		// Set ServletContext and ServletConfig as properties to Message
 		server.getEndpoint().getInInterceptors()
@@ -129,7 +133,7 @@ public class AccountsResourceTest {
 	}
 
 	@Test
-	public void testGetAccount() throws Exception {
+	public void testGetAccount() {
 		List<Object> providers = new ArrayList<Object>();
 		providers.add(new GsonJsonProvider<Account>());
 
@@ -271,6 +275,62 @@ public class AccountsResourceTest {
 
 		// 400 Bad Request must be returned
 		assertTrue(response.getStatus() == 400);
+	}
+
+	@Test
+	public void testDeleteAccount() {
+		server.getEndpoint().getInInterceptors().clear();
+
+		when(querySingleAccount.getSingleResult()).thenReturn(new Account());
+		when(em.createNamedQuery("getAccountById")).thenReturn(
+				querySingleAccount);
+		when(em.getTransaction()).thenReturn(et);
+		when(emf.createEntityManager()).thenReturn(em);
+		when(servletContext.getAttribute("emf")).thenReturn(emf);
+		when(servletConfig.getInitParameter("max.results")).thenReturn("10");
+
+		server.getEndpoint().getInInterceptors()
+				.add(new PreInvokeInInterceptor(servletContext, servletConfig));
+
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new GsonJsonProvider<Account>());
+
+		WebClient webClient = WebClient.create(ADDRESS, providers);
+		webClient.path("accounts/").path("1")
+				.accept(MediaType.APPLICATION_JSON)
+				.type(MediaType.APPLICATION_JSON);
+
+		Response response = webClient.delete();
+
+		assertTrue(response.getStatus() == 200);
+	}
+
+	@Test
+	public void testDeleteUnexistingAccount() {
+		server.getEndpoint().getInInterceptors().clear();
+
+		when(querySingleAccount.getSingleResult()).thenReturn(null);
+		when(em.createNamedQuery("getAccountById")).thenReturn(
+				querySingleAccount);
+		when(em.getTransaction()).thenReturn(et);
+		when(emf.createEntityManager()).thenReturn(em);
+		when(servletContext.getAttribute("emf")).thenReturn(emf);
+		when(servletConfig.getInitParameter("max.results")).thenReturn("10");
+
+		server.getEndpoint().getInInterceptors()
+				.add(new PreInvokeInInterceptor(servletContext, servletConfig));
+
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new GsonJsonProvider<Account>());
+
+		WebClient webClient = WebClient.create(ADDRESS, providers);
+		webClient.path("accounts/").path("100")
+				.accept(MediaType.APPLICATION_JSON)
+				.type(MediaType.APPLICATION_JSON);
+
+		Response response = webClient.delete();
+
+		assertTrue(response.getStatus() == 404);
 	}
 
 	@AfterClass

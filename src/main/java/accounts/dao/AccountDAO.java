@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import accounts.model.Account;
@@ -90,6 +91,9 @@ public class AccountDAO {
 			if (account != null) {
 				updateAccountPropertyInDb(em, account, accountProperty,
 						accountValue);
+			} else {
+				throw new NoResultException("Account with id [" + id
+						+ "] not found");
 			}
 		} finally {
 			em.close();
@@ -134,6 +138,9 @@ public class AccountDAO {
 			Account account = getAccountFromDb(em, id);
 			if (account != null) {
 				deleteAccountFromDb(em, account);
+			} else {
+				throw new NoResultException("Account with id [" + id
+						+ "] not found");
 			}
 		} finally {
 			em.close();
