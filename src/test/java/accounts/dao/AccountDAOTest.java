@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
@@ -31,20 +32,12 @@ public class AccountDAOTest {
 	EntityManager em;
 
 	@Mock
+	EntityTransaction et;
+
+	@Mock
 	Query query;
 
 	private AccountDAO accountDAO = new AccountDAO(null);
-
-	@Test
-	public void testDeleteUnexistingAccount() {
-		when(query.getSingleResult()).thenReturn(null);
-		when(em.createNamedQuery("getAccountById")).thenReturn(query);
-		when(emf.createEntityManager()).thenReturn(em);
-		accountDAO = new AccountDAO(emf);
-		expectedException.expect(NoResultException.class);
-		expectedException.expectMessage("Account with id [1] not found");
-		accountDAO.deleteAccount(1L);
-	}
 
 	@Test
 	public void testAddAccountWithMissingFirstName() throws Exception {
@@ -85,6 +78,17 @@ public class AccountDAOTest {
 		expectedException
 				.expectMessage("Email [john.doe@sun-fish] is not valid");
 		accountDAO.createAccount(account);
+	}
+
+	@Test
+	public void testDeleteUnexistingAccount() {
+		when(query.getSingleResult()).thenReturn(null);
+		when(em.createNamedQuery("getAccountById")).thenReturn(query);
+		when(emf.createEntityManager()).thenReturn(em);
+		accountDAO = new AccountDAO(emf);
+		expectedException.expect(NoResultException.class);
+		expectedException.expectMessage("Account with id [1] not found");
+		accountDAO.deleteAccount(1L);
 	}
 
 	private Account createAccountWithMissingFirstName() {
