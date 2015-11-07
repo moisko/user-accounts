@@ -141,7 +141,7 @@
 						dataTable.fnAddData([ account[1],
 						                      account[2],
 						                      account[3],
-						                      account[4],
+						                      toLocalDateTimeString(account[4]),
 						                      constructDeleteLink(account[0]) ]);
 					});
 				},
