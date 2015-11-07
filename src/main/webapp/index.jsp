@@ -104,7 +104,7 @@
 					                      constructDeleteLink(account.id) ]);
 				},
 				error : function(xhr, status) {
-					alert("Failed to add account.\nServer returned: " + xhr.statusText);
+					alert("Failed to add account.\nServer returned: " + xhr.statusText + "-" + xhr.responseText);
 				}
 			});
 		}
@@ -122,7 +122,7 @@
 					dataTable.fnDeleteRow(tableRow);
 				},
 				error : function(xhr, status) {
-					alert("Failed to delete account.\nServer returned: " + xhr.statusText);
+					alert("Failed to delete account.\nServer returned: " + xhr.statusText + "-" + xhr.responseText);
 				}
 			});
 		}
