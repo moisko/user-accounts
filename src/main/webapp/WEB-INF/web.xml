@@ -3,6 +3,10 @@
 	version="3.0">
 	<display-name>User Accounts Web Application</display-name>
 
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
 	<servlet>
 		<servlet-name>Accounts CXF Servlet</servlet-name>
 		<servlet-class>org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
@@ -24,15 +28,11 @@
 				accounts.exception.RollbackExceptionMapper
 			</param-value>
 		</init-param>
-		<init-param>
-			<param-name>max.results</param-name>
-			<param-value>10</param-value>
-		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>Accounts CXF Servlet</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/accounts/*</url-pattern>
 	</servlet-mapping>
 </web-app>

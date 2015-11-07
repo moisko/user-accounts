@@ -26,10 +26,10 @@ public class AccountDAO {
 		this.emf = emf;
 	}
 
-	public List<Account> getAccounts(int maxResults) {
+	public List<Account> getAccounts() {
 		EntityManager em = emf.createEntityManager();
 		try {
-			return getAccountsFromDb(em, maxResults);
+			return getAccountsFromDb(em);
 		} finally {
 			em.close();
 		}
@@ -88,9 +88,8 @@ public class AccountDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	private List<Account> getAccountsFromDb(EntityManager em, int maxResults) {
+	private List<Account> getAccountsFromDb(EntityManager em) {
 		Query q = em.createNamedQuery("getAllAccounts");
-		q.setMaxResults(maxResults);
 		List<Account> allAccounts = (List<Account>) q.getResultList();
 		return allAccounts;
 	}

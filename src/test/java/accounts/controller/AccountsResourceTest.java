@@ -15,7 +15,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -42,9 +41,6 @@ public class AccountsResourceTest {
 
 	@Mock
 	ServletContext servletContext;
-
-	@Mock
-	ServletConfig servletConfig;
 
 	@Mock
 	EntityManagerFactory emf;
@@ -106,11 +102,10 @@ public class AccountsResourceTest {
 		when(emf.createEntityManager()).thenReturn(em);
 
 		when(servletContext.getAttribute("emf")).thenReturn(emf);
-		when(servletConfig.getInitParameter("max.results")).thenReturn("10");
 
 		// Set ServletContext and ServletConfig as properties to Message
 		server.getEndpoint().getInInterceptors()
-				.add(new PreInvokeInInterceptor(servletContext, servletConfig));
+				.add(new PreInvokeInInterceptor(servletContext));
 	}
 
 	@Test
@@ -119,8 +114,8 @@ public class AccountsResourceTest {
 		providers.add(new GsonJsonProvider<Account>());
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
-		webClient.path("accounts/").accept(MediaType.APPLICATION_JSON)
-				.type(MediaType.APPLICATION_JSON);
+		webClient.accept(MediaType.APPLICATION_JSON).type(
+				MediaType.APPLICATION_JSON);
 
 		Response response = webClient.get();
 
@@ -138,8 +133,7 @@ public class AccountsResourceTest {
 		providers.add(new GsonJsonProvider<Account>());
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
-		webClient.path("accounts/").path("1")
-				.accept(MediaType.APPLICATION_JSON)
+		webClient.path("1").accept(MediaType.APPLICATION_JSON)
 				.type(MediaType.APPLICATION_JSON);
 
 		Response response = webClient.get();
@@ -153,8 +147,8 @@ public class AccountsResourceTest {
 		providers.add(new GsonJsonProvider<Account>());
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
-		webClient.path("accounts/").accept(MediaType.APPLICATION_JSON)
-				.type(MediaType.APPLICATION_JSON);
+		webClient.accept(MediaType.APPLICATION_JSON).type(
+				MediaType.APPLICATION_JSON);
 
 		// Message body - Account without firstName
 		Account account = createSingleAccount();
@@ -172,8 +166,8 @@ public class AccountsResourceTest {
 		providers.add(new GsonJsonProvider<Account>());
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
-		webClient.path("accounts/").accept(MediaType.APPLICATION_JSON)
-				.type(MediaType.APPLICATION_JSON);
+		webClient.accept(MediaType.APPLICATION_JSON).type(
+				MediaType.APPLICATION_JSON);
 
 		// Message body - Account without firstName
 		Account account = new Account();
@@ -194,8 +188,8 @@ public class AccountsResourceTest {
 		providers.add(new GsonJsonProvider<Account>());
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
-		webClient.path("accounts/").accept(MediaType.APPLICATION_JSON)
-				.type(MediaType.APPLICATION_JSON);
+		webClient.accept(MediaType.APPLICATION_JSON).type(
+				MediaType.APPLICATION_JSON);
 
 		// Message body - Account without firstName
 		Account account = new Account();
@@ -216,8 +210,8 @@ public class AccountsResourceTest {
 		providers.add(new GsonJsonProvider<Account>());
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
-		webClient.path("accounts/").accept(MediaType.APPLICATION_JSON)
-				.type(MediaType.APPLICATION_JSON);
+		webClient.accept(MediaType.APPLICATION_JSON).type(
+				MediaType.APPLICATION_JSON);
 
 		// Message body - Account without firstName
 		Account account = new Account();
@@ -238,8 +232,8 @@ public class AccountsResourceTest {
 		providers.add(new GsonJsonProvider<Account>());
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
-		webClient.path("accounts/").accept(MediaType.APPLICATION_JSON)
-				.type(MediaType.APPLICATION_JSON);
+		webClient.accept(MediaType.APPLICATION_JSON).type(
+				MediaType.APPLICATION_JSON);
 
 		// Message body - Account without firstName
 		Account account = new Account();
@@ -261,8 +255,8 @@ public class AccountsResourceTest {
 		providers.add(new GsonJsonProvider<Account>());
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
-		webClient.path("accounts/").accept(MediaType.APPLICATION_JSON)
-				.type(MediaType.APPLICATION_JSON);
+		webClient.accept(MediaType.APPLICATION_JSON).type(
+				MediaType.APPLICATION_JSON);
 
 		// Message body - Account without firstName
 		Account account = new Account();
@@ -287,17 +281,15 @@ public class AccountsResourceTest {
 		when(em.getTransaction()).thenReturn(et);
 		when(emf.createEntityManager()).thenReturn(em);
 		when(servletContext.getAttribute("emf")).thenReturn(emf);
-		when(servletConfig.getInitParameter("max.results")).thenReturn("10");
 
 		server.getEndpoint().getInInterceptors()
-				.add(new PreInvokeInInterceptor(servletContext, servletConfig));
+				.add(new PreInvokeInInterceptor(servletContext));
 
 		List<Object> providers = new ArrayList<Object>();
 		providers.add(new GsonJsonProvider<Account>());
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
-		webClient.path("accounts/").path("1")
-				.accept(MediaType.APPLICATION_JSON)
+		webClient.path("1").accept(MediaType.APPLICATION_JSON)
 				.type(MediaType.APPLICATION_JSON);
 
 		Response response = webClient.delete();
@@ -319,17 +311,15 @@ public class AccountsResourceTest {
 		when(em.getTransaction()).thenReturn(et);
 		when(emf.createEntityManager()).thenReturn(em);
 		when(servletContext.getAttribute("emf")).thenReturn(emf);
-		when(servletConfig.getInitParameter("max.results")).thenReturn("10");
 
 		server.getEndpoint().getInInterceptors()
-				.add(new PreInvokeInInterceptor(servletContext, servletConfig));
+				.add(new PreInvokeInInterceptor(servletContext));
 
 		List<Object> providers = new ArrayList<Object>();
 		providers.add(new GsonJsonProvider<Account>());
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
-		webClient.path("accounts/").path("100")
-				.accept(MediaType.APPLICATION_JSON)
+		webClient.path("100").accept(MediaType.APPLICATION_JSON)
 				.type(MediaType.APPLICATION_JSON);
 
 		Response response = webClient.delete();

@@ -34,9 +34,7 @@ public class AccountsResource implements Accounts {
 		EntityManagerFactory emf = (EntityManagerFactory) servletContext
 				.getAttribute("emf");
 		AccountDAO accountDAO = new AccountDAO(emf);
-		int maxResults = Integer.parseInt(servletConfig
-				.getInitParameter("max.results"));
-		List<Account> accounts = accountDAO.getAccounts(maxResults);
+		List<Account> accounts = accountDAO.getAccounts();
 		return Response.status(Status.OK).entity(accounts).build();
 	}
 
