@@ -103,6 +103,11 @@
 					                      account.email,
 					                      toLocalDateTimeString(account.dateOfBirth),
 					                      constructDeleteLink(account.id) ]);
+					// Clear
+					$("#first-name").val("");
+					$("#last-name").val("");
+					$("#email").val("");
+					$("#date-of-birth").val("");
 				},
 				error : function(xhr, status) {
 					alert("Failed to add account.\nServer returned: " + xhr.statusText + "-" + xhr.responseText);
