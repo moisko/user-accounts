@@ -173,7 +173,7 @@
 		$("#date-of-birth").datetimepicker({
 			format : "d/m/Y H:i"
 		});
-		
+
 		$("#add-account-form").submit(function(event) {
 			addAccount();
 			event.preventDefault();
@@ -184,7 +184,7 @@
 </head>
 <body>
 	<div>
-		<table id="accounts-table" class="display" border="1">
+		<table id="accounts-table" class="display">
 			<thead>
 				<tr>
 					<th colspan="6"/>
