@@ -35,10 +35,14 @@ public class AccountValidator {
 		switch (accountProperty) {
 		case Account.FIRST_NAME: {
 			Ensure.notNull(accountValue, "Missing property [firstName]");
+			Ensure.wordsOnly(Account.FIRST_NAME, (String) accountValue);
+			Ensure.maxLengthOf(accountProperty, (String) accountValue, 50);
 		}
 			break;
 		case Account.LAST_NAME: {
 			Ensure.notNull(accountValue, "Missing property [lastName]");
+			Ensure.wordsOnly(Account.LAST_NAME, (String) accountValue);
+			Ensure.maxLengthOf(accountProperty, (String) accountValue, 50);
 		}
 			break;
 		case Account.EMAIL: {
