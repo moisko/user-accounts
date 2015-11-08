@@ -15,13 +15,13 @@ public class AccountValidator {
 	public static void validate(Account account) {
 		String firstName = account.getFirstName();
 		validateAccountProperty(Account.FIRST_NAME, firstName);
-		Ensure.wordsOnly(firstName);
-		Ensure.maxLengthOf(firstName, 50);
+		Ensure.wordsOnly(Account.FIRST_NAME, firstName);
+		Ensure.maxLengthOf(Account.FIRST_NAME, firstName, 50);
 
 		String lastName = account.getLastName();
 		validateAccountProperty(Account.LAST_NAME, lastName);
-		Ensure.wordsOnly(lastName);
-		Ensure.maxLengthOf(firstName, 50);
+		Ensure.wordsOnly(Account.LAST_NAME, lastName);
+		Ensure.maxLengthOf(Account.LAST_NAME, lastName, 50);
 
 		String email = account.getEmail();
 		validateAccountProperty(Account.EMAIL, email);
