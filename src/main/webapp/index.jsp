@@ -10,6 +10,7 @@
 <script src="js/vendor/jquery-1.11.3.min.js"></script>
 <script src="js/vendor/datatables.min.js"></script>
 <script src="js/vendor/jquery.datetimepicker.js"></script>
+<script src="js/vendor/jquery.jeditable.mini.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -157,6 +158,39 @@
 			"order" : [[3, "desc"]],
 			"fnHeaderCallback" : function(nHead, aData, iStart, iEnd, aiDisplay) {
 				nHead.getElementsByTagName("th")[0].innerHTML = (iEnd - iStart) + " Measures";
+			},
+			"fnRowCallback" : function(nRow, aData, iStart, iEnd, aiDisplay) {
+				var id = $("td a", nRow).attr("id");
+				var tdElements = $("td", nRow);
+				var index = 0;
+				for(index = 0; index < tdElements.length; index++) {
+					var tdElement = tdElements[index];
+					switch(index) {
+						case 0:
+							tdElement.setAttribute("id", "firstName_" + id);
+							tdElement.setAttribute("class", "edit");
+							break;
+						case 1:
+							tdElement.setAttribute("id", "lastName_" + id);
+							tdElement.setAttribute("class", "edit");
+							break;
+						case 2:
+							tdElement.setAttribute("id", "email_" + id);
+							tdElement.setAttribute("class", "edit");
+							break;
+						case 3:
+							tdElement.setAttribute("id", "dateOfBirth_" + id);
+							tdElement.setAttribute("class", "edit");
+							break;
+						default:
+							break;
+					}
+				}
+			},
+			"fnDrawCallback" : function () {
+				$("#accounts-table tbody tr td:not(.delete)").editable("/user-accounts/accounts/update", {
+					"onblur" : "submit"
+				});
 			}
 		});
 
@@ -194,7 +228,7 @@
 					<th>LAST NAME</th>
 					<th>EMAIL</th>
 					<th>DATE OF BIRTH</th>
-					<th>DELETE</th>
+					<th class="delete">DELETE</th>
 				</tr>
 			</thead>
 			<tbody></tbody>

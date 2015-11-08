@@ -12,6 +12,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import accounts.model.Account;
+import accounts.utils.AccountUtils;
 import accounts.validation.AccountValidator;
 
 public class AccountDAO {
@@ -54,15 +55,19 @@ public class AccountDAO {
 		}
 	}
 
-	public void updateAccount(Long id, String accountProperty,
-			String accountValue) throws ParseException {
-		AccountValidator.validateAccountProperty(accountProperty, accountValue);
+	public void updateAccount(String id, String value) {
+		Long accountId = AccountUtils.getAccountId(id);
+		String accountProperty = AccountUtils.getAccountProperty(id);
+		AccountValidator.validateAccountProperty(accountProperty, value);
 		EntityManager em = emf.createEntityManager();
 		try {
-			Account account = getAccountFromDb(em, id);
+			Account account = getAccountFromDb(em, accountId);
 			if (account != null) {
-				updateAccountPropertyInDb(em, account, accountProperty,
-						accountValue);
+				try {
+					updateAccountPropertyInDb(em, account, accountProperty, value);
+				} catch (ParseException e) {
+					throw new IllegalArgumentException(e.getMessage());
+				}
 			} else {
 				throw new NoResultException("Account with id [" + id
 						+ "] not found");

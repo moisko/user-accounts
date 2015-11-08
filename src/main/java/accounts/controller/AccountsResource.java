@@ -13,11 +13,11 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-
 import accounts.dao.AccountDAO;
 import accounts.model.Account;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 public class AccountsResource implements Accounts {
 
@@ -30,6 +30,7 @@ public class AccountsResource implements Accounts {
 	@Context
 	UriInfo uriInfo;
 
+	@Override
 	public Response getAccounts() {
 		EntityManagerFactory emf = (EntityManagerFactory) servletContext
 				.getAttribute("emf");
@@ -38,6 +39,7 @@ public class AccountsResource implements Accounts {
 		return Response.status(Status.OK).entity(accounts).build();
 	}
 
+	@Override
 	public Response getAccount(Long id) {
 		EntityManagerFactory emf = (EntityManagerFactory) servletContext
 				.getAttribute("emf");
@@ -46,6 +48,7 @@ public class AccountsResource implements Accounts {
 		return Response.status(Status.OK).entity(account).build();
 	}
 
+	@Override
 	public Response createAccount(Account account) {
 		EntityManagerFactory emf = (EntityManagerFactory) servletContext
 				.getAttribute("emf");
@@ -59,6 +62,16 @@ public class AccountsResource implements Accounts {
 				.entity(account).build();
 	}
 
+	@Override
+	public Response updateAccount(String id, String value) {
+		EntityManagerFactory emf = (EntityManagerFactory) servletContext
+				.getAttribute("emf");
+		AccountDAO accountDAO = new AccountDAO(emf);
+		accountDAO.updateAccount(id, value);
+		return Response.status(Status.OK).entity(value).build();
+	}
+
+	@Override
 	public Response deleteAccount(Long id) {
 		EntityManagerFactory emf = (EntityManagerFactory) servletContext
 				.getAttribute("emf");
