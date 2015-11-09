@@ -35,19 +35,21 @@ public class AccountValidator {
 		switch (accountProperty) {
 		case Account.FIRST_NAME: {
 			Ensure.notNull(accountValue, "Missing property [firstName]");
-			Ensure.wordsOnly(Account.FIRST_NAME, (String) accountValue);
-			Ensure.maxLengthOf(accountProperty, (String) accountValue, 50);
+			String firstName = String.valueOf(accountValue);
+			Ensure.wordsOnly(Account.FIRST_NAME, firstName);
+			Ensure.maxLengthOf(accountProperty, firstName, 50);
 		}
 			break;
 		case Account.LAST_NAME: {
 			Ensure.notNull(accountValue, "Missing property [lastName]");
-			Ensure.wordsOnly(Account.LAST_NAME, (String) accountValue);
-			Ensure.maxLengthOf(accountProperty, (String) accountValue, 50);
+			String lastName = String.valueOf(accountValue);
+			Ensure.wordsOnly(Account.LAST_NAME, lastName);
+			Ensure.maxLengthOf(accountProperty, lastName, 50);
 		}
 			break;
 		case Account.EMAIL: {
-			String email = (String) accountValue;
-			Ensure.notNull(email, "Missing property [email]");
+			Ensure.notNull(accountValue, "Missing property [email]");
+			String email = String.valueOf(accountValue);
 			Pattern pattern = Pattern.compile(EMAIL_PATTERN);
 			Matcher matcher = pattern.matcher(email);
 			boolean valid = matcher.matches();
@@ -59,6 +61,10 @@ public class AccountValidator {
 			break;
 		case Account.DATE_OF_BIRTH: {
 			Ensure.notNull(accountValue, "Missing property [dateOfBirth]");
+			if (!(accountValue instanceof Date)) {
+				throw new IllegalArgumentException("Date of birth ["
+						+ (String) accountValue + "] is not valid");
+			}
 		}
 			break;
 		default:

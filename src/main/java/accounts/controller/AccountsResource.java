@@ -63,7 +63,7 @@ public class AccountsResource implements Accounts {
 	}
 
 	@Override
-	public Response updateAccount(String id, String value) {
+	public Response updateAccount(String id, Object value) {
 		EntityManagerFactory emf = (EntityManagerFactory) servletContext
 				.getAttribute("emf");
 		AccountDAO accountDAO = new AccountDAO(emf);

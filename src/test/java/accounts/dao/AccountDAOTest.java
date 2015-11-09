@@ -91,6 +91,61 @@ public class AccountDAOTest {
 		accountDAO.deleteAccount(1L);
 	}
 
+	@Test
+	public void testUpdateAccountWithInvalidFirstName() {
+		expectedException.expect(IllegalArgumentException.class);
+		expectedException
+				.expectMessage("Words only allowed for property firstName");
+		accountDAO.updateAccount("firstName_13", "123");
+	}
+
+	@Test
+	public void testUpdateAccountWithInvalidLastName() {
+		expectedException.expect(IllegalArgumentException.class);
+		expectedException
+				.expectMessage("Words only allowed for property lastName");
+		accountDAO.updateAccount("lastName_13", "123");
+	}
+
+	@Test
+	public void testUpdateAccountWithInvalidEmail() {
+		expectedException.expect(IllegalArgumentException.class);
+		expectedException.expectMessage("Email [john@] is not valid");
+		accountDAO.updateAccount("email_13", "john@");
+	}
+
+	@Test
+	public void testUpdateAccountWithInvalidDateOfBirth() {
+		expectedException.expect(IllegalArgumentException.class);
+		expectedException
+				.expectMessage("Date of birth [11/2/2015a] is not valid");
+		accountDAO.updateAccount("dateOfBirth_13", "11/2/2015a");
+	}
+
+	@Test
+	public void testUpdateUnexistingAccount() {
+		when(query.getSingleResult()).thenReturn(null);
+		when(em.createNamedQuery("getAccountById")).thenReturn(query);
+		when(emf.createEntityManager()).thenReturn(em);
+		accountDAO = new AccountDAO(emf);
+		expectedException.expect(NoResultException.class);
+		expectedException
+				.expectMessage("Account with id [firstName_3] not found");
+		accountDAO.updateAccount("firstName_3", "Boris");
+	}
+
+	@Test
+	public void testUpdateAccountWithUnexistingAccountProperty() {
+		when(query.getSingleResult()).thenReturn(null);
+		when(em.createNamedQuery("getAccountById")).thenReturn(query);
+		when(emf.createEntityManager()).thenReturn(em);
+		accountDAO = new AccountDAO(emf);
+		expectedException.expect(IllegalArgumentException.class);
+		expectedException
+				.expectMessage("Account property [unexistingAccountProperty] does not exist");
+		accountDAO.updateAccount("unexistingAccountProperty_3", "Boris");
+	}
+
 	private Account createAccountWithMissingFirstName() {
 		Account account = new Account();
 		account.setLastName("Doe");

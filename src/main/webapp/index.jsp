@@ -22,7 +22,7 @@
 			function decreaseMonth(month) {
 				var m = parseInt(month, 10);
 				return --m;
-			}
+			};
 
 			var splittedLocalDateTime = dateTimeString.split(" "),
 				localDate = splittedLocalDateTime[0],
@@ -43,7 +43,7 @@
 			function decreaseMonth(month) {
 				var m = parseInt(month, 10);
 				return --m;
-			}
+			};
 
 			var splittedLocalDateTime = dateTimeString.split(" "),
 				localDate = splittedLocalDateTime[0],
@@ -67,33 +67,33 @@
 					minute = "0" + minute;
 				}
 				return minute;
-			}
+			};
 
 			function formatHour(hour) {
 				if (hour >= 0 && hour <= 9) {
 					hour = "0" + hour;
 				}
 				return hour;
-			}
+			};
 
 			function formatDate(date) {
 				if (date >= 1 && date <= 9) {
 					date = "0" + date;
 				}
 				return date;
-			}
+			};
 
 			function formatMonth(month) {
 				if (month >= 1 && month <= 9) {
 					month = "0" + month;
 				}
 				return month;
-			}
+			};
 
 			function increaseMonth(month) {
 				var m = parseInt(month, 10);
 				return ++m;
-			}
+			};
 
 			var d = new Date(dateTimeInMillis),
 				date = d.getDate(),
@@ -183,7 +183,7 @@
 					var tokens = id.split("_");
 					var accountProperty = tokens[0];
 					return accountProperty;
-				}
+				};
 
 				function createInputTypeControl(id, type) {
 					var input;
@@ -196,7 +196,7 @@
 							break;
 					}
 					return input;
-				}
+				};
 
 				function createControl(id) {
 					var control;
@@ -215,7 +215,7 @@
 							break;
 					}
 					return $(control);
-				}
+				};
 
 				var id = original.getAttribute("id");
 				var control = createControl(id);

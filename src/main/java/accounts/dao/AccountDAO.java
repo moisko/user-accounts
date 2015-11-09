@@ -1,6 +1,5 @@
 package accounts.dao;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -17,9 +16,8 @@ import accounts.validation.AccountValidator;
 
 public class AccountDAO {
 
-	private static final String PATTERN = "dd/MM/yyyy HH:mm";
-	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat(
-			PATTERN);
+	public static final SimpleDateFormat FORMATTER = new SimpleDateFormat(
+			"dd/MM/yyyy HH:mm");
 
 	private final EntityManagerFactory emf;
 
@@ -55,7 +53,7 @@ public class AccountDAO {
 		}
 	}
 
-	public void updateAccount(String id, String value) {
+	public void updateAccount(String id, Object value) {
 		Long accountId = AccountUtils.getAccountId(id);
 		String accountProperty = AccountUtils.getAccountProperty(id);
 		AccountValidator.validateAccountProperty(accountProperty, value);
@@ -63,11 +61,7 @@ public class AccountDAO {
 		try {
 			Account account = getAccountFromDb(em, accountId);
 			if (account != null) {
-				try {
-					updateAccountPropertyInDb(em, account, accountProperty, value);
-				} catch (ParseException e) {
-					throw new IllegalArgumentException(e.getMessage());
-				}
+				updateAccountPropertyInDb(em, account, accountProperty, value);
 			} else {
 				throw new NoResultException("Account with id [" + id
 						+ "] not found");
@@ -120,23 +114,22 @@ public class AccountDAO {
 	}
 
 	private void updateAccountPropertyInDb(EntityManager em, Account account,
-			String accountProperty, String accountValue) throws ParseException {
+			String accountProperty, Object accountValue) {
 		EntityTransaction et = em.getTransaction();
 		try {
 			et.begin();
 			switch (accountProperty) {
 			case Account.FIRST_NAME:
-				account.setFirstName(accountValue);
+				account.setFirstName((String) accountValue);
 				break;
 			case Account.LAST_NAME:
-				account.setLastName(accountValue);
+				account.setLastName((String) accountValue);
 				break;
 			case Account.EMAIL:
-				account.setEmail(accountProperty);
+				account.setEmail((String) accountValue);
 				break;
 			case Account.DATE_OF_BIRTH: {
-				Date dateOfBirth = FORMATTER.parse(accountValue);
-				account.setDateOfBirth(dateOfBirth);
+				account.setDateOfBirth((Date) accountValue);
 			}
 				break;
 			default:

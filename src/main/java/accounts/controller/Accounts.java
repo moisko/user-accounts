@@ -32,7 +32,7 @@ public interface Accounts {
 	@Produces(MediaType.TEXT_PLAIN)
 	@POST
 	public Response updateAccount(@FormParam("id") String id,
-			@FormParam("value") String value);
+			@FormParam("value") Object value);
 
 	@DELETE
 	@Path("{id}")

@@ -15,7 +15,8 @@ public class Ensure {
 	}
 
 	public static void wordsOnly(String accountProperty, String accountValue) {
-		boolean matches = accountValue.matches("[a-zA-z]+");
+		boolean matches = accountValue.matches("[a-zA-z]+")
+				&& !accountValue.equals("null") && !accountValue.isEmpty();
 		if (!matches) {
 			throw new IllegalArgumentException(
 					"Words only allowed for property " + accountProperty);
