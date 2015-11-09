@@ -1,6 +1,6 @@
 package accounts.controller;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 import java.io.BufferedReader;
@@ -269,6 +269,11 @@ public class AccountsResourceTest {
 
 		// 400 Bad Request must be returned
 		assertTrue(response.getStatus() == 400);
+	}
+
+	@Test
+	public void testUpdateAccountWithInvalidDateOfBirth() {
+
 	}
 
 	@Test

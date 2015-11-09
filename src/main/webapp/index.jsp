@@ -168,7 +168,9 @@
 				url : "/user-accounts/accounts/",
 				type : "GET",
 				success : function(accounts) {
-					dataTable.fnAddData(accounts);
+					if(accounts.length > 0) {
+						dataTable.fnAddData(accounts);
+					}
 				},
 				error : function(xhr, status) {
 					alert("Failed to load user accounts.\nServer returned: " + xhr.statusText);

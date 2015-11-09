@@ -1,5 +1,6 @@
 package accounts.dao;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -53,7 +54,7 @@ public class AccountDAO {
 		}
 	}
 
-	public void updateAccount(String id, Object value) {
+	public void updateAccount(String id, String value) {
 		Long accountId = AccountUtils.getAccountId(id);
 		String accountProperty = AccountUtils.getAccountProperty(id);
 		AccountValidator.validateAccountProperty(accountProperty, value);
@@ -114,22 +115,28 @@ public class AccountDAO {
 	}
 
 	private void updateAccountPropertyInDb(EntityManager em, Account account,
-			String accountProperty, Object accountValue) {
+			String accountProperty, String accountValue) {
 		EntityTransaction et = em.getTransaction();
 		try {
 			et.begin();
 			switch (accountProperty) {
 			case Account.FIRST_NAME:
-				account.setFirstName((String) accountValue);
+				account.setFirstName(accountValue);
 				break;
 			case Account.LAST_NAME:
-				account.setLastName((String) accountValue);
+				account.setLastName(accountValue);
 				break;
 			case Account.EMAIL:
-				account.setEmail((String) accountValue);
+				account.setEmail(accountValue);
 				break;
 			case Account.DATE_OF_BIRTH: {
-				account.setDateOfBirth((Date) accountValue);
+				try {
+					Date dateOfBirth = AccountDAO.FORMATTER.parse(accountValue);
+					account.setDateOfBirth(dateOfBirth);
+				} catch (ParseException e) {
+					throw new IllegalArgumentException("Date of birth ["
+							+ accountValue + "] is not valid");
+				}
 			}
 				break;
 			default:

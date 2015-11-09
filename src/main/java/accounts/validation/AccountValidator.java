@@ -1,9 +1,11 @@
 package accounts.validation;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import accounts.dao.AccountDAO;
 import accounts.model.Account;
 import accounts.utils.Ensure;
 
@@ -27,43 +29,42 @@ public class AccountValidator {
 		validateAccountProperty(Account.EMAIL, email);
 
 		Date dateOfBirth = account.getDateOfBirth();
-		validateAccountProperty(Account.DATE_OF_BIRTH, dateOfBirth);
+		Ensure.notNull(dateOfBirth, "Missing property [dateOfBirth]");
 	}
 
 	public static void validateAccountProperty(String accountProperty,
-			Object accountValue) {
+			String accountValue) {
 		switch (accountProperty) {
 		case Account.FIRST_NAME: {
 			Ensure.notNull(accountValue, "Missing property [firstName]");
-			String firstName = String.valueOf(accountValue);
-			Ensure.wordsOnly(Account.FIRST_NAME, firstName);
-			Ensure.maxLengthOf(accountProperty, firstName, 50);
+			Ensure.wordsOnly(Account.FIRST_NAME, accountValue);
+			Ensure.maxLengthOf(accountProperty, accountValue, 50);
 		}
 			break;
 		case Account.LAST_NAME: {
 			Ensure.notNull(accountValue, "Missing property [lastName]");
-			String lastName = String.valueOf(accountValue);
-			Ensure.wordsOnly(Account.LAST_NAME, lastName);
-			Ensure.maxLengthOf(accountProperty, lastName, 50);
+			Ensure.wordsOnly(Account.LAST_NAME, accountValue);
+			Ensure.maxLengthOf(accountProperty, accountValue, 50);
 		}
 			break;
 		case Account.EMAIL: {
 			Ensure.notNull(accountValue, "Missing property [email]");
-			String email = String.valueOf(accountValue);
 			Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-			Matcher matcher = pattern.matcher(email);
+			Matcher matcher = pattern.matcher(accountValue);
 			boolean valid = matcher.matches();
 			if (!valid) {
-				throw new IllegalArgumentException("Email [" + email
+				throw new IllegalArgumentException("Email [" + accountValue
 						+ "] is not valid");
 			}
 		}
 			break;
 		case Account.DATE_OF_BIRTH: {
 			Ensure.notNull(accountValue, "Missing property [dateOfBirth]");
-			if (!(accountValue instanceof Date)) {
+			try {
+				AccountDAO.FORMATTER.parse(accountValue);
+			} catch (ParseException e) {
 				throw new IllegalArgumentException("Date of birth ["
-						+ (String) accountValue + "] is not valid");
+						+ accountValue + "] is not valid");
 			}
 		}
 			break;
