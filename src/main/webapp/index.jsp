@@ -37,7 +37,28 @@
 				dateTimeInMillis = new Date(year, decreaseMonth(month), date, hh, mm);
 
 			return dateTimeInMillis.getTime();
-		}
+		};
+
+		function toDate(dateTimeString) {
+			function decreaseMonth(month) {
+				var m = parseInt(month, 10);
+				return --m;
+			}
+
+			var splittedLocalDateTime = dateTimeString.split(" "),
+				localDate = splittedLocalDateTime[0],
+				splittedDate = localDate.split("/"),
+				date = splittedDate[0],
+				month = splittedDate[1],
+				year = splittedDate[2],
+				time = splittedLocalDateTime[1],
+				splittedTime = time.split(":"),
+				hh = splittedTime[0],
+				mm = splittedTime[1],
+				date = new Date(year, decreaseMonth(month), date, hh, mm);
+
+			return date;
+		};
 
 		function toLocalDateTimeString(dateTimeInMillis) {
 
@@ -83,7 +104,7 @@
 				localDateTimeString = formatDate(date)+ "/" + formatMonth(increaseMonth(month)) + "/" + fullYear + " " + formatHour(hh) + ":" + formatMinute(mm);
 
 			return localDateTimeString;
-		}
+		};
 
 		function addAccount() {
 			$.ajax({
@@ -104,20 +125,24 @@
 					                      account.dateOfBirth,
 					                      account.id ]);
 					// Clear form
-					$("#first-name").val("");
-					$("#last-name").val("");
-					$("#email").val("");
-					$("#date-of-birth").val("");
+					clearAddAccountForm();
 				},
 				error : function(xhr, status) {
 					alert("Failed to add account.\nServer returned: " + xhr.statusText + "-" + xhr.responseText);
 				}
 			});
-		}
+		};
+
+		function clearAddAccountForm() {
+			$("#first-name").val("");
+			$("#last-name").val("");
+			$("#email").val("");
+			$("#date-of-birth").val("");
+		};
 
 		function getAccountIdFromTableRow(tableRow) {
 			return tableRow.find("td a").attr("id");
-		}
+		};
 
 		function deleteAccount(tableRow) {
 			var accountId = getAccountIdFromTableRow(tableRow);
@@ -131,11 +156,11 @@
 					alert("Failed to delete account.\nServer returned: " + xhr.statusText + "-" + xhr.responseText);
 				}
 			});
-		}
+		};
 
 		function constructDeleteLink(id) {
 			return "<a href=accounts/" + id + " id=" + id + ">Delete account</a>";
-		}
+		};
 
 		function populateAccountsTable() {
 			// Get accounts
@@ -143,15 +168,13 @@
 				url : "/user-accounts/accounts/",
 				type : "GET",
 				success : function(accounts) {
-					accounts.forEach(function(account) {
-						dataTable.fnAddData(account);
-					});
+					dataTable.fnAddData(accounts);
 				},
 				error : function(xhr, status) {
 					alert("Failed to load user accounts.\nServer returned: " + xhr.statusText);
 				}
 			});
-		}
+		};
 
 		$.editable.addInputType("account", {
 			element : function(settings, original) {
@@ -210,6 +233,22 @@
 			}
 		});
 
+		$.fn.dataTableExt.oSort["date-bg-asc"] = function(dateTimeStringA, dateTimeStringB) {
+				var dateA = toDate(dateTimeStringA);
+				var dateB = toDate(dateTimeStringB);
+				if(dateA > dateB) return 1;
+				if(dateA < dateB) return -1;
+				return 0;
+		};
+
+		$.fn.dataTableExt.oSort["date-bg-desc"] = function(dateTimeStringA, dateTimeStringB) {
+				var dateA = toDate(dateTimeStringA);
+				var dateB = toDate(dateTimeStringB);
+				if(dateA > dateB) return -1;
+				if(dateA < dateB) return 1;
+				return 0;
+		};
+
 		// Execution
 
 		var dataTable = $("#accounts-table").dataTable({
@@ -217,7 +256,8 @@
 				{"aTargets" : [3],// DATE OF BIRTH column
 					"mRender" : function(datetimeInMillis) {
 						return toLocalDateTimeString(datetimeInMillis);
-					}
+					},
+					"sType" : "date-bg"
 				},
 				{"aTargets" : [4],// DELETE column
 					"bSortable" : false,
