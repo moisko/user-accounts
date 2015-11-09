@@ -101,9 +101,9 @@
 					dataTable.fnAddData([ account.firstName,
 					                      account.lastName,
 					                      account.email,
-					                      toLocalDateTimeString(account.dateOfBirth),
-					                      constructDeleteLink(account.id) ]);
-					// Clear
+					                      account.dateOfBirth,
+					                      account.id ]);
+					// Clear form
 					$("#first-name").val("");
 					$("#last-name").val("");
 					$("#email").val("");
@@ -144,11 +144,7 @@
 				type : "GET",
 				success : function(accounts) {
 					accounts.forEach(function(account) {
-						dataTable.fnAddData([ account[1],
-						                      account[2],
-						                      account[3],
-						                      toLocalDateTimeString(account[4]),
-						                      constructDeleteLink(account[0]) ]);
+						dataTable.fnAddData(account);
 					});
 				},
 				error : function(xhr, status) {
@@ -217,10 +213,19 @@
 		// Execution
 
 		var dataTable = $("#accounts-table").dataTable({
-			"order" : [[3, "desc"]],
-			"aoColumnDefs" : [{"aTargets" : [4],// DELETE column
-				"bSortable" : false
-			}],
+			"aoColumnDefs" : [
+				{"aTargets" : [3],// DATE OF BIRTH column
+					"mRender" : function(datetimeInMillis) {
+						return toLocalDateTimeString(datetimeInMillis);
+					}
+				},
+				{"aTargets" : [4],// DELETE column
+					"bSortable" : false,
+					"mRender" : function(id) {
+						return constructDeleteLink(id);
+					}
+				}
+			],
 			"fnHeaderCallback" : function(nHead, aData, iStart, iEnd, aiDisplay) {
 				nHead.getElementsByTagName("th")[0].innerHTML = (iEnd - iStart) + " Measures";
 			},
@@ -286,27 +291,25 @@
 </script>
 </head>
 <body>
-	<div>
-		<table id="accounts-table" class="display">
-			<thead>
-				<tr>
-					<th colspan="6"/>
-				</tr>
-				<tr>
-					<th>FIRST NAME</th>
-					<th>LAST NAME</th>
-					<th>EMAIL</th>
-					<th>DATE OF BIRTH</th>
-					<th>DELETE</th>
-				</tr>
-			</thead>
-			<tbody></tbody>
-		</table>
-	</div>
+	<table id="accounts-table" class="display">
+		<thead>
+			<tr>
+				<th colspan="6" />
+			</tr>
+			<tr>
+				<th>FIRST NAME</th>
+				<th>LAST NAME</th>
+				<th>EMAIL</th>
+				<th>DATE OF BIRTH</th>
+				<th>DELETE</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
 
-	<div>
-		<h2>Add measure</h2>
-		<form id="add-account-form" action="">
+	<h2>Add measure</h2>
+	<form id="add-account-form" action="">
+		<fieldset>
 			<label for="first-name">FIRST NAME: </label>
 			<input id="first-name" name="first-name" type="text" min="1" max="50" size="10" class="required">
 
@@ -314,13 +317,13 @@
 			<input id="last-name" name="last-name" type="text" min="1" max="50" size="10" class="required">
 
 			<label for="email">EMAIL: </label>
-			<input id="email" name="email" type="email" size="20" class="required">
+			<input id="email" name="email" type="email" class="required">
 
 			<label for="date-of-birth">DATE OF BIRTH: </label>
 			<input id="date-of-birth" name="date-of-birth" type="text" size="10" class="required">
 
 			<button type="submit">Add Account</button>
-		</form>
-	</div>
+		</fieldset>
+	</form>
 </body>
 </html>

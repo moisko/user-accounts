@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "getAllAccounts", query = "SELECT a.id, a.firstName, a.lastName, a.email, a.dateOfBirth FROM Account a ORDER BY a.dateOfBirth"),
+		@NamedQuery(name = "getAllAccounts", query = "SELECT a.firstName, a.lastName, a.email, a.dateOfBirth, a.id FROM Account a"),
 		@NamedQuery(name = "getAccountById", query = "SELECT a FROM Account a WHERE a.id = :id") })
 @Table(name = "ACCOUNT")
 public class Account implements Serializable {
