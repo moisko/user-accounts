@@ -267,7 +267,7 @@
 				}
 			],
 			"fnHeaderCallback" : function(nHead, aData, iStart, iEnd, aiDisplay) {
-				nHead.getElementsByTagName("th")[0].innerHTML = (iEnd - iStart) + " Measures";
+				nHead.getElementsByTagName("th")[0].innerHTML = (iEnd - iStart) + " Accounts";
 			},
 			"fnRowCallback" : function(nRow, aData, iStart, iEnd, aiDisplay) {
 				var id = $("td a", nRow).attr("id");
