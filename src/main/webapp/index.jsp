@@ -249,7 +249,7 @@
 							input = "<input id=\"" + id + "\" type=\"text\" min=\"1\" max=\"50\" size=\"10\" class=\"required\">";
 							break;
 						case "datetime-local":
-							input = "<input id=\"" + id + "\" type=\"text\" size=\"10\" class=\"required\">";
+							input = "<input id=\"" + id + "\" type=\"text\" size=\"12\" class=\"required\">";
 							break;
 					}
 					return input;
