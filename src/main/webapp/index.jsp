@@ -56,7 +56,7 @@
 			<label for="date-of-birth" class="sr-only">DATE OF BIRTH: </label>
 			<input id="date-of-birth" name="date-of-birth" type="text" placeholder="Date Of Birth" class="form-control required">
 		</div>
-		<button class="btn btn-default" type="submit">Add Account</button>
+		<button class="btn btn-primary" type="submit">Add Account</button>
 	</form>
 </div>
 

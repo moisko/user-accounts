@@ -11,6 +11,8 @@ TesttaskforSeniorJavaWebDevelopers-061014-1301-44
 <br />
 	-> username/password - westernacher/westernacher
 
+* Code coverage - 79.2%
+
 Environment:
 ------------
 * Java 7

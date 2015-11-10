@@ -7,7 +7,7 @@
 		<jta-data-source>java:/comp/env/jdbc/accountsDB</jta-data-source>
 		<class>accounts.model.Account</class>
 		<properties>
-			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="eclipselink.ddl-generation" value="create-tables" />
 		</properties>
 	</persistence-unit>
 </persistence>
