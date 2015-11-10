@@ -23,6 +23,8 @@ Environment:
 
 * Database - MySQL
 
+* Persistency - Eclipselink
+
 * Sortable Grid - jquery datatables
 
 * CSS Framework - Bootstrap
