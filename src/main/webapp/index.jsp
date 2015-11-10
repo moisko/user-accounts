@@ -231,7 +231,7 @@
 			});
 		};
 
-		// Define custome input type 
+		// Custome input type 
 
 		$.editable.addInputType("account", {
 			element : function(settings, original) {
@@ -290,7 +290,7 @@
 			}
 		});
 
-		// Define custom sorting by dates
+		// Custom sorting by dates
 
 		$.fn.dataTableExt.oSort["date-bg-asc"] = function(dateTimeStringA, dateTimeStringB) {
 				var dateA = toDate(dateTimeStringA);
@@ -308,7 +308,7 @@
 				return 0;
 		};
 
-		// Execution
+		// jquery datatables
 
 		var dataTable = $("#accounts-table").dataTable({
 			"aaSorting" : [[ 3, "asc" ]],
