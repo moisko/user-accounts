@@ -2,15 +2,62 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>User Accounts App</title>
 
+<link rel="stylesheet" type="text/css" href="css/vendor/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/vendor/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="css/vendor/jquery.datetimepicker.css">
+
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+	<table id="accounts-table" class="display">
+		<thead>
+			<tr>
+				<th colspan="6" />
+			</tr>
+			<tr>
+				<th>FIRST NAME</th>
+				<th>LAST NAME</th>
+				<th>EMAIL</th>
+				<th>DATE OF BIRTH</th>
+				<th>DELETE</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+
+	<h2>Add measure</h2>
+	<form id="add-account-form" action="">
+		<fieldset>
+			<label for="first-name">FIRST NAME: </label>
+			<input id="first-name" name="first-name" type="text" min="1" max="50" size="10" class="required">
+
+			<label for="last-name">LAST NAME: </label>
+			<input id="last-name" name="last-name" type="text" min="1" max="50" size="10" class="required">
+
+			<label for="email">EMAIL: </label>
+			<input id="email" name="email" type="email" size="20" class="required">
+
+			<label for="date-of-birth">DATE OF BIRTH: </label>
+			<input id="date-of-birth" name="date-of-birth" type="text" size="12" class="required">
+
+			<button type="submit">Add Account</button>
+		</fieldset>
+	</form>
 
 <script src="js/vendor/jquery-1.11.3.min.js"></script>
 <script src="js/vendor/datatables.min.js"></script>
 <script src="js/vendor/jquery.datetimepicker.js"></script>
 <script src="js/vendor/jquery.jeditable.mini.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -164,7 +211,6 @@
 		};
 
 		function populateAccountsTable() {
-			// Get accounts
 			$.ajax({
 				url : "/user-accounts/accounts/",
 				type : "GET",
@@ -352,41 +398,5 @@
 
 	});
 </script>
-</head>
-<body>
-	<table id="accounts-table" class="display">
-		<thead>
-			<tr>
-				<th colspan="6" />
-			</tr>
-			<tr>
-				<th>FIRST NAME</th>
-				<th>LAST NAME</th>
-				<th>EMAIL</th>
-				<th>DATE OF BIRTH</th>
-				<th>DELETE</th>
-			</tr>
-		</thead>
-		<tbody></tbody>
-	</table>
-
-	<h2>Add measure</h2>
-	<form id="add-account-form" action="">
-		<fieldset>
-			<label for="first-name">FIRST NAME: </label>
-			<input id="first-name" name="first-name" type="text" min="1" max="50" size="10" class="required">
-
-			<label for="last-name">LAST NAME: </label>
-			<input id="last-name" name="last-name" type="text" min="1" max="50" size="10" class="required">
-
-			<label for="email">EMAIL: </label>
-			<input id="email" name="email" type="email" size="20" class="required">
-
-			<label for="date-of-birth">DATE OF BIRTH: </label>
-			<input id="date-of-birth" name="date-of-birth" type="text" size="12" class="required">
-
-			<button type="submit">Add Account</button>
-		</fieldset>
-	</form>
 </body>
 </html>
