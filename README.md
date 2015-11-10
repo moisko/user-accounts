@@ -56,9 +56,7 @@ Setup:
 ```
 * get latest development version from Jenkins CI server
 
-* deploy produced war
-
-* make a GET request to http://localhost:<port>/user-accounts/accounts to check if the server returns empty array
+* copy the war file into webapps dir
 
 # REST endpoints
 See accounts.controller.Accounts
