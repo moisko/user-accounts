@@ -64,6 +64,7 @@
 <script src="js/vendor/datatables.min.js"></script>
 <script src="js/vendor/jquery.datetimepicker.js"></script>
 <script src="js/vendor/jquery.jeditable.mini.js"></script>
+<script src="js/vendor/jquery.blockUI.js"></script>
 <script src="js/vendor/bootstrap.min.js"></script>
 
 <script type="text/javascript">
@@ -221,6 +222,11 @@
 			$.ajax({
 				url : "/user-accounts/accounts/",
 				type : "GET",
+				beforeSend : function() {
+					$.blockUI({
+						message : "<h1>Loading ...</h1>"
+					});
+				},
 				success : function(accounts) {
 					if(accounts.length > 0) {
 						dataTable.fnAddData(accounts);
@@ -229,6 +235,8 @@
 				error : function(xhr, status) {
 					alert("Failed to load user accounts.\nServer returned: " + xhr.statusText);
 				}
+			}).done(function() {
+				$.unblockUI();
 			});
 		};
 
