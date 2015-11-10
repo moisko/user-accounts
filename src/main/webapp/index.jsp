@@ -15,7 +15,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		// Functions
+		// Functions for datetime processing
 
 		function parse(dateTimeString) {
 
@@ -106,6 +106,8 @@
 			return localDateTimeString;
 		};
 
+		// Functions used for CRUD operations on datatables
+
 		function addAccount() {
 			$.ajax({
 				url : "/user-accounts/accounts",
@@ -124,7 +126,6 @@
 					                      account.email,
 					                      account.dateOfBirth,
 					                      account.id ]);
-					// Clear form
 					clearAddAccountForm();
 				},
 				error : function(xhr, status) {
@@ -177,6 +178,8 @@
 				}
 			});
 		};
+
+		// Define custome input type 
 
 		$.editable.addInputType("account", {
 			element : function(settings, original) {
@@ -235,6 +238,8 @@
 			}
 		});
 
+		// Define custom sorting by dates
+
 		$.fn.dataTableExt.oSort["date-bg-asc"] = function(dateTimeStringA, dateTimeStringB) {
 				var dateA = toDate(dateTimeStringA);
 				var dateB = toDate(dateTimeStringB);
@@ -254,6 +259,7 @@
 		// Execution
 
 		var dataTable = $("#accounts-table").dataTable({
+			"aaSorting" : [[ 3, "asc" ]],
 			"aoColumnDefs" : [
 				{"aTargets" : [3],// DATE OF BIRTH column
 					"mRender" : function(datetimeInMillis) {
@@ -305,7 +311,22 @@
 			"fnDrawCallback" : function () {
 				$("#accounts-table tbody tr td:not(.delete)").editable("/user-accounts/accounts/update", {
 					"type" : "account",
-					"onblur" : "submit"
+					"onblur" : "submit",
+					"callback" : function(updatedValue) {
+						function convertUpdatedValueToColumnType(column) {
+							if(column === 3) {// DELETE column
+								return parse(updatedValue);
+							}
+							return updatedValue;
+						};
+
+						var position = dataTable.fnGetPosition(this);
+						var row = position[0];
+						var column = position[1];
+						var aData = dataTable.fnGetData(row);
+						aData[column] = convertUpdatedValueToColumnType(column);
+						dataTable.fnUpdate(aData, row);
+					}
 				});
 			}
 		});
@@ -359,10 +380,10 @@
 			<input id="last-name" name="last-name" type="text" min="1" max="50" size="10" class="required">
 
 			<label for="email">EMAIL: </label>
-			<input id="email" name="email" type="email" class="required">
+			<input id="email" name="email" type="email" size="20" class="required">
 
 			<label for="date-of-birth">DATE OF BIRTH: </label>
-			<input id="date-of-birth" name="date-of-birth" type="text" size="10" class="required">
+			<input id="date-of-birth" name="date-of-birth" type="text" size="12" class="required">
 
 			<button type="submit">Add Account</button>
 		</fieldset>

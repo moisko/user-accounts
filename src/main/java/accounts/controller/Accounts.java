@@ -28,7 +28,6 @@ public interface Accounts {
 	public Response createAccount(Account account);
 
 	@Path("/update")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	@POST
 	public Response updateAccount(@FormParam("id") String id,

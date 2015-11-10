@@ -1,6 +1,5 @@
 package accounts.controller;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 
 import org.apache.cxf.interceptor.Fault;

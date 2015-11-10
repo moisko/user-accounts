@@ -16,6 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.servlet.ServletContext;
+import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -57,7 +58,7 @@ public class AccountsResourceTest {
 	@Mock
 	Query querySingleAccount;
 
-	private static final String ADDRESS = "http://localhost:8080/user-accounts/";
+	private static final String ADDRESS = "http://localhost:8080/user-accounts/accounts/";
 
 	private static Server server;
 
@@ -115,7 +116,7 @@ public class AccountsResourceTest {
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
 		webClient.accept(MediaType.APPLICATION_JSON).type(
-				MediaType.APPLICATION_JSON);
+				MediaType.APPLICATION_JSON_TYPE);
 
 		Response response = webClient.get();
 
@@ -134,7 +135,7 @@ public class AccountsResourceTest {
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
 		webClient.path("1").accept(MediaType.APPLICATION_JSON)
-				.type(MediaType.APPLICATION_JSON);
+				.type(MediaType.APPLICATION_JSON_TYPE);
 
 		Response response = webClient.get();
 
@@ -148,7 +149,7 @@ public class AccountsResourceTest {
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
 		webClient.accept(MediaType.APPLICATION_JSON).type(
-				MediaType.APPLICATION_JSON);
+				MediaType.APPLICATION_JSON_TYPE);
 
 		// Message body - Account without firstName
 		Account account = createSingleAccount();
@@ -167,7 +168,7 @@ public class AccountsResourceTest {
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
 		webClient.accept(MediaType.APPLICATION_JSON).type(
-				MediaType.APPLICATION_JSON);
+				MediaType.APPLICATION_JSON_TYPE);
 
 		// Message body - Account without firstName
 		Account account = new Account();
@@ -189,7 +190,7 @@ public class AccountsResourceTest {
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
 		webClient.accept(MediaType.APPLICATION_JSON).type(
-				MediaType.APPLICATION_JSON);
+				MediaType.APPLICATION_JSON_TYPE);
 
 		// Message body - Account without firstName
 		Account account = new Account();
@@ -211,7 +212,7 @@ public class AccountsResourceTest {
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
 		webClient.accept(MediaType.APPLICATION_JSON).type(
-				MediaType.APPLICATION_JSON);
+				MediaType.APPLICATION_JSON_TYPE);
 
 		// Message body - Account without firstName
 		Account account = new Account();
@@ -233,7 +234,7 @@ public class AccountsResourceTest {
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
 		webClient.accept(MediaType.APPLICATION_JSON).type(
-				MediaType.APPLICATION_JSON);
+				MediaType.APPLICATION_JSON_TYPE);
 
 		// Message body - Account without firstName
 		Account account = new Account();
@@ -256,7 +257,7 @@ public class AccountsResourceTest {
 
 		WebClient webClient = WebClient.create(ADDRESS, providers);
 		webClient.accept(MediaType.APPLICATION_JSON).type(
-				MediaType.APPLICATION_JSON);
+				MediaType.APPLICATION_JSON_TYPE);
 
 		// Message body - Account without firstName
 		Account account = new Account();
@@ -272,8 +273,21 @@ public class AccountsResourceTest {
 	}
 
 	@Test
-	public void testUpdateAccountWithInvalidDateOfBirth() {
+	public void testUpdateFirstNameProperty() {
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new GsonJsonProvider<Account>());
 
+		WebClient webClient = WebClient.create(ADDRESS, providers);
+		webClient.path("/update").accept(MediaType.TEXT_PLAIN)
+				.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+
+		Form form = new Form();
+		form.param("id", "firstName_3").param("value", "john");
+
+		// Make a POST request to update the account
+		String response = webClient.post(form, String.class);
+
+		assertTrue(response.equals("john"));
 	}
 
 	@Test
