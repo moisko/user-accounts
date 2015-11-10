@@ -41,19 +41,19 @@
 	<h2>Add account</h2>
 	<form id="add-account-form" action="" class="form-inline">
 		<div class="form-group">
-			<label for="first-name" class="sr-only">FIRST NAME: </label>
+			<label for="first-name" class="sr-only">FIRST NAME</label>
 			<input id="first-name" name="first-name" type="text" min="1" max="50" placeholder="First Name" class="form-control required">
 		</div>
 		<div class="form-group">
-			<label for="last-name" class="sr-only">LAST NAME: </label>
+			<label for="last-name" class="sr-only">LAST NAME</label>
 			<input id="last-name" name="last-name" type="text" min="1" max="50" placeholder="Last Name" class="form-control required">
 		</div>
 		<div class="form-group">
-			<label for="email" class="sr-only">EMAIL: </label>
+			<label for="email" class="sr-only">EMAIL</label>
 			<input id="email" name="email" type="email" placeholder="Email" class="form-control required">
 		</div>
 		<div class="form-group">
-			<label for="date-of-birth" class="sr-only">DATE OF BIRTH: </label>
+			<label for="date-of-birth" class="sr-only">DATE OF BIRTH</label>
 			<input id="date-of-birth" name="date-of-birth" type="text" placeholder="Date Of Birth" class="form-control required">
 		</div>
 		<button class="btn btn-primary" type="submit">Add Account</button>
