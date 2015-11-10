@@ -6,7 +6,9 @@ TesttaskforSeniorJavaWebDevelopers-061014-1301-44
 * Github repository - https://github.com/moisko/user-accounts
 
 * Jenkins build - http://www.boratino.com/jenkins/
+<br />
 	-> project - user-accounts
+<br />
 	-> username/password - westernacher/westernacher
 
 Environment:
