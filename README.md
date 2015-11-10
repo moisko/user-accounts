@@ -63,5 +63,5 @@ Setup:
 * copy the war file into webapps dir
 
 # REST endpoints
-See accounts.controller.Accounts
+See <b>accounts.controller.Accounts</b>
 
