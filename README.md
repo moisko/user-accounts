@@ -7,9 +7,9 @@ TesttaskforSeniorJavaWebDevelopers-061014-1301-44
 
 * Jenkins build - http://www.boratino.com/jenkins/
 <br />
-	-> project - user-accounts
+	-> project - <b>user-accounts</b>
 <br />
-	-> username/password - westernacher/westernacher
+	-> username/password - <b>westernacher/westernacher</b>
 
 * Code coverage - 79.2%
 
