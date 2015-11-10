@@ -1,4 +1,7 @@
-td,th {
+body>.container {
+	margin-top: 20px;
+}
+
+td, th {
 	text-align: center;
-	vertical-align: middle;
 }
