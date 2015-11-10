@@ -16,6 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.servlet.ServletContext;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -282,12 +283,197 @@ public class AccountsResourceTest {
 				.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE);
 
 		Form form = new Form();
-		form.param("id", "firstName_3").param("value", "john");
+		form.param("id", "firstName_0").param("value", "john");
 
 		// Make a POST request to update the account
 		String response = webClient.post(form, String.class);
 
 		assertTrue(response.equals("john"));
+	}
+
+	@Test
+	public void testUpdateFirstNamePropertyWithEmptyString() throws Exception {
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new GsonJsonProvider<Account>());
+
+		WebClient webClient = WebClient.create(ADDRESS, providers);
+		webClient.path("/update").accept(MediaType.TEXT_PLAIN)
+				.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+
+		Form form = new Form();
+		form.param("id", "firstName_1").param("value", "");
+
+		try {
+			webClient.post(form, String.class);
+		} catch (WebApplicationException e) {
+			String response = readResponse((InputStream) e.getResponse()
+					.getEntity());
+			assertTrue(response
+					.equals("Words only allowed for property firstName"));
+		}
+	}
+
+	@Test
+	public void testUpdateLastNameProperty() {
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new GsonJsonProvider<Account>());
+
+		WebClient webClient = WebClient.create(ADDRESS, providers);
+		webClient.path("/update").accept(MediaType.TEXT_PLAIN)
+				.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+
+		Form form = new Form();
+		form.param("id", "lastName_1").param("value", "doe");
+
+		// Make a POST request to update the account
+		String response = webClient.post(form, String.class);
+
+		assertTrue(response.equals("doe"));
+	}
+
+	@Test
+	public void testUpdateLastNamePropertyWithEmptyString() throws Exception {
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new GsonJsonProvider<Account>());
+
+		WebClient webClient = WebClient.create(ADDRESS, providers);
+		webClient.path("/update").accept(MediaType.TEXT_PLAIN)
+				.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+
+		Form form = new Form();
+		form.param("id", "lastName_1").param("value", "");
+
+		try {
+			webClient.post(form, String.class);
+		} catch (WebApplicationException e) {
+			String response = readResponse((InputStream) e.getResponse()
+					.getEntity());
+			assertTrue(response
+					.equals("Words only allowed for property lastName"));
+		}
+	}
+
+	@Test
+	public void testUpdateEmailProperty() {
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new GsonJsonProvider<Account>());
+
+		WebClient webClient = WebClient.create(ADDRESS, providers);
+		webClient.path("/update").accept(MediaType.TEXT_PLAIN)
+				.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+
+		Form form = new Form();
+		form.param("id", "email_2").param("value", "john@sun-fish.com");
+
+		// Make a POST request to update the account
+		String response = webClient.post(form, String.class);
+
+		assertTrue(response.equals("john@sun-fish.com"));
+	}
+
+	@Test
+	public void testUpdateWithInvalidEmail() throws Exception {
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new GsonJsonProvider<Account>());
+
+		WebClient webClient = WebClient.create(ADDRESS, providers);
+		webClient.path("/update").accept(MediaType.TEXT_PLAIN)
+				.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+
+		Form form = new Form();
+		form.param("id", "email_2").param("value", "john@sun-fish");
+
+		try {
+			webClient.post(form, String.class);
+		} catch (WebApplicationException e) {
+			String response = readResponse((InputStream) e.getResponse()
+					.getEntity());
+			assertTrue(response.equals("Email [john@sun-fish] is not valid"));
+		}
+	}
+
+	@Test
+	public void testUpdateDateOfBirthProperty() {
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new GsonJsonProvider<Account>());
+
+		WebClient webClient = WebClient.create(ADDRESS, providers);
+		webClient.path("/update").accept(MediaType.TEXT_PLAIN)
+				.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+
+		Form form = new Form();
+		form.param("id", "dateOfBirth_3").param("value", "03/11/2015 08:46");
+
+		// Make a POST request to update the account
+		String response = webClient.post(form, String.class);
+
+		assertTrue(response.equals("03/11/2015 08:46"));
+	}
+
+	@Test
+	public void testUpdateDateOfBirthWithInvalidFormat() throws Exception {
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new GsonJsonProvider<Account>());
+
+		WebClient webClient = WebClient.create(ADDRESS, providers);
+		webClient.path("/update").accept(MediaType.TEXT_PLAIN)
+				.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+
+		Form form = new Form();
+		form.param("id", "dateOfBirth_3").param("value", "2015/11/13 08:46");
+
+		try {
+			webClient.post(form, String.class);
+		} catch (WebApplicationException e) {
+			String response = readResponse((InputStream) e.getResponse()
+					.getEntity());
+			assertTrue(response
+					.equals("Date of birth [2015/11/13 08:46] is not valid"));
+		}
+	}
+
+	@Test
+	public void testUpdateUnexistingAccountProperty() throws Exception {
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new GsonJsonProvider<Account>());
+
+		WebClient webClient = WebClient.create(ADDRESS, providers);
+		webClient.path("/update").accept(MediaType.TEXT_PLAIN)
+				.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+
+		Form form = new Form();
+		form.param("id", "unexisting_3").param("value", "some value");
+
+		try {
+			webClient.post(form, String.class);
+		} catch (WebApplicationException e) {
+			String response = readResponse((InputStream) e.getResponse()
+					.getEntity());
+			assertTrue(response
+					.equals("Account property [unexisting] does not exist"));
+		}
+	}
+
+	@Test
+	public void testUpdatePropertyWithWrongFormat() throws Exception {
+		List<Object> providers = new ArrayList<Object>();
+		providers.add(new GsonJsonProvider<Account>());
+
+		WebClient webClient = WebClient.create(ADDRESS, providers);
+		webClient.path("/update").accept(MediaType.TEXT_PLAIN)
+				.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+
+		Form form = new Form();
+		form.param("id", "wrongformat").param("value", "some value");
+
+		try {
+			webClient.post(form, String.class);
+		} catch (WebApplicationException e) {
+			String response = readResponse((InputStream) e.getResponse()
+					.getEntity());
+			assertTrue(response
+					.equals("Param [wrongformat] is not valid - [_] not found"));
+		}
 	}
 
 	@Test

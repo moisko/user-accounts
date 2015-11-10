@@ -331,23 +331,23 @@
 			}
 		});
 
+		populateAccountsTable();
+
 		dataTable.delegate("tbody tr td a", "click", function(event) {
+			event.preventDefault();
 			if(confirm("Are you sure you want to delete this account") == true) {
 				var tableRow = $(this).parent().parent();
 				deleteAccount(tableRow);
 			}
-			event.preventDefault();
 		});
-
-		populateAccountsTable();
 
 		$("#date-of-birth").datetimepicker({
 			format : "d/m/Y H:i"
 		});
 
 		$("#add-account-form").submit(function(event) {
-			addAccount();
 			event.preventDefault();
+			addAccount();
 		});
 
 	});

@@ -31,4 +31,12 @@ public class Ensure {
 					+ " reached for property " + accountProperty);
 		}
 	}
+
+	public static void containsString(String source, String str) {
+		if (!source.contains(str)) {
+			throw new IllegalArgumentException("Param [" + source
+					+ "] is not valid - [" + str + "] not found");
+		}
+	}
+
 }
