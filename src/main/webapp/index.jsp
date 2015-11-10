@@ -8,7 +8,6 @@
 <title>User Accounts App</title>
 
 <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/vendor/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="css/vendor/dataTables.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/vendor/jquery.datetimepicker.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
@@ -22,7 +21,7 @@
 <body>
 <div class="container">
 	<div class="row">
-		<table id="accounts-table" class="display">
+		<table id="accounts-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th colspan="6" />
