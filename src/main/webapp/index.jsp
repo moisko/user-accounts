@@ -22,7 +22,7 @@
 <body>
 <div class="container">
 	<div class="row">
-		<table id="accounts-table" class="display datatable">
+		<table id="accounts-table" class="display">
 			<thead>
 				<tr>
 					<th colspan="6" />
