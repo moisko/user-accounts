@@ -38,8 +38,8 @@
 		</table>
 	</div>
 
-		<h2>Add account</h2>
-		<form id="add-account-form" action="" class="form-inline">
+	<h2>Add account</h2>
+	<form id="add-account-form" action="" class="form-inline">
 		<div class="form-group">
 			<label for="first-name" class="sr-only">FIRST NAME: </label>
 			<input id="first-name" name="first-name" type="text" min="1" max="50" placeholder="First Name" class="form-control required">
@@ -57,8 +57,7 @@
 			<input id="date-of-birth" name="date-of-birth" type="text" placeholder="Date Of Birth" class="form-control required">
 		</div>
 		<button class="btn btn-default" type="submit">Add Account</button>
-		</form>
-
+	</form>
 </div>
 
 <script src="js/vendor/jquery-1.11.3.min.js"></script>
