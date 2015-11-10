@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/vendor/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="css/vendor/jquery.datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -18,25 +19,28 @@
 
 </head>
 <body>
-	<table id="accounts-table" class="display">
-		<thead>
-			<tr>
-				<th colspan="6" />
-			</tr>
-			<tr>
-				<th>FIRST NAME</th>
-				<th>LAST NAME</th>
-				<th>EMAIL</th>
-				<th>DATE OF BIRTH</th>
-				<th>DELETE</th>
-			</tr>
-		</thead>
-		<tbody></tbody>
-	</table>
+<div class="container">
+	<div class="row">
+		<table id="accounts-table" class="display">
+			<thead>
+				<tr>
+					<th colspan="6" />
+				</tr>
+				<tr>
+					<th>FIRST NAME</th>
+					<th>LAST NAME</th>
+					<th>EMAIL</th>
+					<th>DATE OF BIRTH</th>
+					<th>DELETE</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
 
-	<h2>Add measure</h2>
-	<form id="add-account-form" action="">
-		<fieldset>
+	<div class="row">
+		<h2>Add measure</h2>
+		<form id="add-account-form" action="">
 			<label for="first-name">FIRST NAME: </label>
 			<input id="first-name" name="first-name" type="text" min="1" max="50" size="10" class="required">
 
@@ -49,9 +53,11 @@
 			<label for="date-of-birth">DATE OF BIRTH: </label>
 			<input id="date-of-birth" name="date-of-birth" type="text" size="12" class="required">
 
-			<button type="submit">Add Account</button>
-		</fieldset>
-	</form>
+			<button class="btn" type="submit">Add Account</button>
+		</form>
+	</div>
+
+</div>
 
 <script src="js/vendor/jquery-1.11.3.min.js"></script>
 <script src="js/vendor/datatables.min.js"></script>
