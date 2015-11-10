@@ -256,7 +256,7 @@
 					var input;
 					switch(type) {
 						case "text":
-							input = "<input id=\"" + id + "\" type=\"text\" min=\"1\" max=\"50\" size=\"10\" class=\"required\">";
+							input = "<input id=\"" + id + "\" type=\"text\" min=\"1\" max=\"50\" size=\"15\" class=\"required\">";
 							break;
 						case "datetime-local":
 							input = "<input id=\"" + id + "\" type=\"text\" size=\"12\" class=\"required\">";
