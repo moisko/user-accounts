@@ -21,7 +21,7 @@
 <body>
 <div class="container">
 	<div class="row">
-		<table id="accounts-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+		<table id="accounts-table" class="table table-striped table-bordered">
 			<thead>
 				<tr>
 					<th colspan="6" />
