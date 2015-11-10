@@ -33,7 +33,7 @@ Setup:
 ------
 * Connector/j driver should be installed in $CATALINA_HOME/lib dir
 
-* create account_schema db schema before deploying and starting the application
+* create <i>account_schema</i> db schema before deploying and starting the application
 
 * In server.xml, add the following context configuration and replace with the correct values for username and password:
 ```xml
