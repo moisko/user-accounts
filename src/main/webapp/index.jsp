@@ -66,7 +66,7 @@
 <script src="js/vendor/jquery.jeditable.mini.js"></script>
 <script src="js/vendor/jquery.blockUI.js"></script>
 <script src="js/vendor/bootstrap.min.js"></script>
-<script src="js/account.js"></script>
+<script src="js/account/account.js"></script>
 
 </body>
 </html>
