@@ -170,7 +170,7 @@ $(document).ready(function() {
 			});
 		};
 
-		// Custome input type 
+		// Custom input type 
 
 		$.editable.addInputType("account", {
 			element : function(settings, original) {
@@ -247,7 +247,7 @@ $(document).ready(function() {
 				return 0;
 		};
 
-		// jquery datatables
+		// jQuery DataTable
 
 		var dataTable = $("#accounts-table").dataTable({
 			"aaSorting" : [[ 3, "asc" ]],
