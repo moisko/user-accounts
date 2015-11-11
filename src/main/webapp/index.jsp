@@ -7,9 +7,9 @@
 
 <title>User Accounts App</title>
 
-<link rel="stylesheet" type="text/css" href="css/vendor/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/vendor/dataTables.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/vendor/jquery.datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.10/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.min.css">
 <link rel="stylesheet" type="text/css" href="css/index.css">
 
 <!--[if lt IE 9]>
@@ -60,12 +60,12 @@
 	</form>
 </div>
 
-<script src="js/vendor/jquery-1.11.3.min.js"></script>
-<script src="js/vendor/datatables.min.js"></script>
-<script src="js/vendor/jquery.datetimepicker.js"></script>
-<script src="js/vendor/jquery.jeditable.mini.js"></script>
-<script src="js/vendor/jquery.blockUI.js"></script>
-<script src="js/vendor/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jeditable.js/1.7.3/jeditable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.66.0-2013.10.09/jquery.blockUI.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="js/account/account.js"></script>
 
 </body>
