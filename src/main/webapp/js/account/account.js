@@ -1,97 +1,6 @@
 $(document).ready(function() {
 
-		// Functions for datetime processing
-
-		function parse(dateTimeString) {
-
-			function decreaseMonth(month) {
-				var m = parseInt(month, 10);
-				return --m;
-			};
-
-			var splittedLocalDateTime = dateTimeString.split(" "),
-				localDate = splittedLocalDateTime[0],
-				splittedDate = localDate.split("/"),
-				date = splittedDate[0],
-				month = splittedDate[1],
-				year = splittedDate[2],
-				time = splittedLocalDateTime[1],
-				splittedTime = time.split(":"),
-				hh = splittedTime[0],
-				mm = splittedTime[1],
-				dateTimeInMillis = new Date(year, decreaseMonth(month), date, hh, mm);
-
-			return dateTimeInMillis.getTime();
-		};
-
-		function toDate(dateTimeString) {
-			function decreaseMonth(month) {
-				var m = parseInt(month, 10);
-				return --m;
-			};
-
-			var splittedLocalDateTime = dateTimeString.split(" "),
-				localDate = splittedLocalDateTime[0],
-				splittedDate = localDate.split("/"),
-				date = splittedDate[0],
-				month = splittedDate[1],
-				year = splittedDate[2],
-				time = splittedLocalDateTime[1],
-				splittedTime = time.split(":"),
-				hh = splittedTime[0],
-				mm = splittedTime[1],
-				date = new Date(year, decreaseMonth(month), date, hh, mm);
-
-			return date;
-		};
-
-		function toLocalDateTimeString(dateTimeInMillis) {
-
-			function formatMinute(minute) {
-				if (minute >= 0 && minute <= 9) {
-					minute = "0" + minute;
-				}
-				return minute;
-			};
-
-			function formatHour(hour) {
-				if (hour >= 0 && hour <= 9) {
-					hour = "0" + hour;
-				}
-				return hour;
-			};
-
-			function formatDate(date) {
-				if (date >= 1 && date <= 9) {
-					date = "0" + date;
-				}
-				return date;
-			};
-
-			function formatMonth(month) {
-				if (month >= 1 && month <= 9) {
-					month = "0" + month;
-				}
-				return month;
-			};
-
-			function increaseMonth(month) {
-				var m = parseInt(month, 10);
-				return ++m;
-			};
-
-			var d = new Date(dateTimeInMillis),
-				date = d.getDate(),
-				month = d.getMonth(),
-				fullYear = d.getFullYear(),
-				hh = d.getHours(),
-				mm = d.getMinutes(),
-				localDateTimeString = formatDate(date)+ "/" + formatMonth(increaseMonth(month)) + "/" + fullYear + " " + formatHour(hh) + ":" + formatMinute(mm);
-
-			return localDateTimeString;
-		};
-
-		// Functions used for CRUD operations on user accounts table
+	// Functions used for CRUD operations on user accounts table
 
 		function addAccount() {
 			$.ajax({
@@ -103,7 +12,7 @@ $(document).ready(function() {
 					"firstName" : $("#first-name").val(),
 					"lastName" : $("#last-name").val(),
 					"email" : $("#email").val(),
-					"dateOfBirth" : parse($("#date-of-birth").val())
+					"dateOfBirth" : datetime.parse($("#date-of-birth").val())
 				}),
 				success : function(account) {
 					dataTable.fnAddData([ account.firstName,
@@ -232,16 +141,16 @@ $(document).ready(function() {
 		// Custom sorting by dates
 
 		$.fn.dataTableExt.oSort["date-bg-asc"] = function(dateTimeStringA, dateTimeStringB) {
-				var dateA = toDate(dateTimeStringA);
-				var dateB = toDate(dateTimeStringB);
+				var dateA = datetime.toDate(dateTimeStringA);
+				var dateB = datetime.toDate(dateTimeStringB);
 				if(dateA > dateB) return 1;
 				if(dateA < dateB) return -1;
 				return 0;
 		};
 
 		$.fn.dataTableExt.oSort["date-bg-desc"] = function(dateTimeStringA, dateTimeStringB) {
-				var dateA = toDate(dateTimeStringA);
-				var dateB = toDate(dateTimeStringB);
+				var dateA = datetime.toDate(dateTimeStringA);
+				var dateB = datetime.toDate(dateTimeStringB);
 				if(dateA > dateB) return -1;
 				if(dateA < dateB) return 1;
 				return 0;
@@ -254,7 +163,7 @@ $(document).ready(function() {
 			"aoColumnDefs" : [
 				{"aTargets" : [3],// DATE OF BIRTH column
 					"mRender" : function(datetimeInMillis) {
-						return toLocalDateTimeString(datetimeInMillis);
+						return datetime.toLocalDateTimeString(datetimeInMillis);
 					},
 					"sType" : "date-bg"
 				},
