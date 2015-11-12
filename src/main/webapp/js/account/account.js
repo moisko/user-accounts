@@ -317,6 +317,10 @@ $(document).ready(function() {
 						var aData = dataTable.fnGetData(row);
 						aData[column] = convertUpdatedValueToColumnType(column);
 						dataTable.fnUpdate(aData, row);
+					},
+					"onerror" : function(settings, original, xhr) {
+						alert("Failed to update account.\nServer returned " + xhr.status + ": " + xhr.responseText);
+						original.reset();
 					}
 				});
 			}
