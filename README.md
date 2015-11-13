@@ -1,5 +1,4 @@
 # user-accounts
-TesttaskforSeniorJavaWebDevelopers-061014-1301-44
 
 * URL - http://boratino.com/user-accounts/
 
