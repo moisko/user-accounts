@@ -30,7 +30,7 @@ Environment:
 
 Setup:
 ------
-* Connector/j driver should be installed in $CATALINA_HOME/lib dir
+* Connector/j driver should be installed in <i>$CATALINA_HOME/lib</i> dir
 
 * create <i>account_schema</i> db schema before deploying and starting the application
 
