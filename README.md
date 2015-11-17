@@ -12,8 +12,8 @@
 
 * Code coverage - 79.2%
 
-Environment:
-------------
+Environment
+-----------
 * Java 7
 
 * Services Framework - Apache CXF
@@ -24,12 +24,12 @@ Environment:
 
 * Persistency - Eclipselink
 
-* Sortable Grid - jquery datatables
+* Sortable Grid - jQuery DataTables
 
 * CSS Framework - Bootstrap
 
-Setup:
-------
+Setup
+-----
 * Connector/j driver should be installed in <i>$CATALINA_HOME/lib</i> dir
 
 * create <i>account_schema</i> db schema before deploying and starting the application
