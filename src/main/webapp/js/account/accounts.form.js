@@ -1,3 +1,5 @@
+var app = app || {};
+
 (function(exports) {
 
 	(function(exports) {
