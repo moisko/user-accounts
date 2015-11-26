@@ -1,10 +1,10 @@
+"use strict";
+
 var app = app || {};
 
 (function(exports) {
 
 	(function(exports) {
-
-		"use strict";
 
 		var api = {
 			addAccount: function addAccount(dataTable) {
@@ -60,7 +60,7 @@ var app = app || {};
 						}
 					},
 					error : function(xhr, status) {
-						alert("Failed to load user accounts.\nServer returned: " + xhr.statusText);
+						alert("Failed to load user accounts.\nServer returned: " + xhr.statusText + "-" + xhr.responseText);
 					}
 				}).done(function() {
 					$.unblockUI();

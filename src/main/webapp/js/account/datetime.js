@@ -1,10 +1,10 @@
+"use strict";
+
 var app = app || {};
 
 (function(exports) {
 
 	(function(exports) {
-
-		"use strict";
 
 		var api = {
 			parse : function(dateTimeString) {

@@ -1,6 +1,6 @@
-$(document).ready(function() {
+"use strict";
 
-	"use strict";
+$(document).ready(function() {
 
 	// Define custom input type account
 
@@ -108,8 +108,7 @@ $(document).ready(function() {
 		"fnRowCallback" : function(nRow, aData, iStart, iEnd, aiDisplay) {
 			var id = $("td a", nRow).attr("id");
 			var tdElements = $("td", nRow);
-			var index = 0;
-			for(index = 0; index < tdElements.length; index++) {
+			for(let index = 0; index < tdElements.length; index++) {
 				var tdElement = tdElements[index];
 				switch(index) {
 					case 0:
