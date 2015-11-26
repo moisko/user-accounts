@@ -167,7 +167,7 @@ $(document).ready(function() {
 
 	dataTable.delegate("tbody tr td a", "click", function(event) {
 		event.preventDefault();
-		if(confirm("Are you sure you want to delete this account") == true) {
+		if(confirm("Are you sure you want to delete this account") === true) {
 			var tableRow = $(this).parent().parent();
 			accountsTable.deleteAccount(dataTable, tableRow);
 		}
