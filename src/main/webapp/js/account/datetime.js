@@ -48,7 +48,7 @@ var app = {};
 
 				return date;
 			},
-7			toLocalDateTimeString : function(dateTimeInMillis) {
+			toLocalDateTimeString : function(dateTimeInMillis) {
 
 				function formatMinute(minute) {
 					if (minute >= 0 && minute <= 9) {
