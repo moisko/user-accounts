@@ -159,7 +159,6 @@ $(document).ready(function() {
 		}
 	});
 
-	// accountsTable.populateAccountsTable(dataTable);
 	app.populateAccountsTable(dataTable);
 
 	dataTable.delegate("tbody tr td a", "click", function(event) {
