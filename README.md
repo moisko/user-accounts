@@ -2,8 +2,6 @@
 
 * URL - http://boratino.com/user-accounts/
 
-* Github repository - https://github.com/moisko/user-accounts
-
 * Jenkins build - http://www.boratino.com/jenkins/
 <br />
 	-> project - <b>user-accounts</b>
