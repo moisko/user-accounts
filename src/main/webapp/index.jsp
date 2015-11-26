@@ -65,11 +65,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jeditable.js/1.7.3/jeditable.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.66.0-2013.10.09/jquery.blockUI.min.js"></script>
+
 <script src="js/vendor/bootstrap.min.js"></script>
 <script src="js/vendor/dataTables.bootstrap.min.js"></script>
+
 <script src="js/account/datetime.js"></script>
+<script src="js/account/accounts.form.js"></script>
 <script src="js/account/accounts.table.js"></script>
-<script src="js/account/account.js"></script>
+<script src="js/account/accounts.js"></script>
 
 </body>
 </html>

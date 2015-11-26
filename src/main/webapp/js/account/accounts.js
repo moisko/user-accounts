@@ -1,10 +1,6 @@
 $(document).ready(function() {
 
-	// Utility functions
-
-	function constructDeleteLink(id) {
-		return "<a href=accounts/" + id + " id=" + id + ">Delete account</a>";
-	};
+	"use strict";
 
 	// Custom input type 
 
@@ -68,16 +64,16 @@ $(document).ready(function() {
 	// Custom sorting by dates
 
 	$.fn.dataTableExt.oSort["date-bg-asc"] = function(dateTimeStringA, dateTimeStringB) {
-		var dateA = datetime.toDate(dateTimeStringA);
-		var dateB = datetime.toDate(dateTimeStringB);
+		var dateA = app.toDate(dateTimeStringA);
+		var dateB = app.toDate(dateTimeStringB);
 		if(dateA > dateB) return 1;
 		if(dateA < dateB) return -1;
 		return 0;
 	};
 
 	$.fn.dataTableExt.oSort["date-bg-desc"] = function(dateTimeStringA, dateTimeStringB) {
-		var dateA = datetime.toDate(dateTimeStringA);
-		var dateB = datetime.toDate(dateTimeStringB);
+		var dateA = app.toDate(dateTimeStringA);
+		var dateB = app.toDate(dateTimeStringB);
 		if(dateA > dateB) return -1;
 		if(dateA < dateB) return 1;
 		return 0;
@@ -91,7 +87,7 @@ $(document).ready(function() {
 			{
 				"aTargets" : [3],// DATE OF BIRTH column
 				"mRender" : function(datetimeInMillis) {
-								return datetime.toLocalDateTimeString(datetimeInMillis);
+								return app.toLocalDateTimeString(datetimeInMillis);
 							},
 				"sType" : "date-bg"
 			},
@@ -99,7 +95,7 @@ $(document).ready(function() {
 				"aTargets" : [4],// DELETE column
 				"bSortable" : false,
 				"mRender" : function(id) {
-								return constructDeleteLink(id);
+								return "<a href=accounts/" + id + " id=" + id + ">Delete account</a>";
 							}
 			}
 		],
@@ -144,7 +140,7 @@ $(document).ready(function() {
 				"callback" : function(updatedValue) {
 					function convertUpdatedValueToColumnType(column) {
 						if(column === 3) {// DELETE column
-							return parse(updatedValue);
+							return app.parse(updatedValue);
 						}
 						return updatedValue;
 					};
@@ -163,13 +159,14 @@ $(document).ready(function() {
 		}
 	});
 
-	accountsTable.populateAccountsTable(dataTable);
+	// accountsTable.populateAccountsTable(dataTable);
+	app.populateAccountsTable(dataTable);
 
 	dataTable.delegate("tbody tr td a", "click", function(event) {
 		event.preventDefault();
 		if(confirm("Are you sure you want to delete this account") === true) {
 			var tableRow = $(this).parent().parent();
-			accountsTable.deleteAccount(dataTable, tableRow);
+			app.deleteAccount(dataTable, tableRow);
 		}
 	});
 
@@ -179,6 +176,6 @@ $(document).ready(function() {
 
 	$("#add-account-form").submit(function(event) {
 		event.preventDefault();
-		accountsTable.addAccount(dataTable);
+		app.addAccount(dataTable);
 	});
 });
