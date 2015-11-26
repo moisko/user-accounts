@@ -17,10 +17,13 @@ $(document).ready(function() {
 				var input;
 				switch(type) {
 					case "text":
-					input = "<input id=\"" + id + "\" type=\"text\" min=\"1\" max=\"50\" size=\"15\" class=\"required\">";
+						input = "<input id=\"" + id + "\" type=\"text\" min=\"1\" max=\"50\" size=\"15\" class=\"required\">";
 					break;
 					case "datetime-local":
-					input = "<input id=\"" + id + "\" type=\"text\" size=\"12\" class=\"required\">";
+						input = "<input id=\"" + id + "\" type=\"text\" size=\"12\" class=\"required\">";
+					break;
+					default:
+						throw "Could not create control of type [" + type + "]";
 					break;
 				}
 				return input;
@@ -33,13 +36,13 @@ $(document).ready(function() {
 					case "firstName":
 					case "lastName":
 					case "email":
-					control = createInputTypeControl(id, "text");
+						control = createInputTypeControl(id, "text");
 					break;
 					case "dateOfBirth":
-					control = createInputTypeControl(id, "datetime-local");
+						control = createInputTypeControl(id, "datetime-local");
 					break;
 					default:
-					console.log("No account property defined for [" + accountProperty + "]");
+						throw "No account property defined for [" + accountProperty + "]";
 					break;
 				}
 				return $(control);
@@ -110,25 +113,26 @@ $(document).ready(function() {
 				var tdElement = tdElements[index];
 				switch(index) {
 					case 0:
-					tdElement.setAttribute("id", "firstName_" + id);
-					tdElement.setAttribute("class", "edit");
+						tdElement.setAttribute("id", "firstName_" + id);
+						tdElement.setAttribute("class", "edit");
 					break;
 					case 1:
-					tdElement.setAttribute("id", "lastName_" + id);
-					tdElement.setAttribute("class", "edit");
+						tdElement.setAttribute("id", "lastName_" + id);
+						tdElement.setAttribute("class", "edit");
 					break;
 					case 2:
-					tdElement.setAttribute("id", "email_" + id);
-					tdElement.setAttribute("class", "edit");
+						tdElement.setAttribute("id", "email_" + id);
+						tdElement.setAttribute("class", "edit");
 					break;
 					case 3:
-					tdElement.setAttribute("id", "dateOfBirth_" + id);
-					tdElement.setAttribute("class", "edit");
+						tdElement.setAttribute("id", "dateOfBirth_" + id);
+						tdElement.setAttribute("class", "edit");
 					break;
 					case 4:
-					tdElement.setAttribute("class", "delete");
+						tdElement.setAttribute("class", "delete");
 					break;
 					default:
+						throw "Invalid column index [" + index + "]";
 					break;
 				}
 			}
