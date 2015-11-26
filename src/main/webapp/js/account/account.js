@@ -88,18 +88,21 @@ $(document).ready(function() {
 	var dataTable = $("#accounts-table").dataTable({
 		"aaSorting" : [[ 3, "asc" ]],
 		"aoColumnDefs" : [
-			{"aTargets" : [3],// DATE OF BIRTH column
-			"mRender" : function(datetimeInMillis) {
-				return datetime.toLocalDateTimeString(datetimeInMillis);
+			{
+				"aTargets" : [3],// DATE OF BIRTH column
+				"mRender" : function(datetimeInMillis) {
+								return datetime.toLocalDateTimeString(datetimeInMillis);
+							},
+				"sType" : "date-bg"
 			},
-			"sType" : "date-bg"
-		},
-			{"aTargets" : [4],// DELETE column
-			"bSortable" : false,
-			"mRender" : function(id) {
-				return constructDeleteLink(id);
+			{
+				"aTargets" : [4],// DELETE column
+				"bSortable" : false,
+				"mRender" : function(id) {
+								return constructDeleteLink(id);
+							}
 			}
-		}],
+		],
 		"fnHeaderCallback" : function(nHead, aData, iStart, iEnd, aiDisplay) {
 			nHead.getElementsByTagName("th")[0].innerHTML = (iEnd - iStart) + " Accounts";
 		},
