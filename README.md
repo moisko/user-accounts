@@ -8,7 +8,7 @@
 <br />
 	-> username/password - <b>westernacher/westernacher</b>
 
-* Code coverage - 79.2%
+* Code coverage - 79.7%
 
 Environment
 -----------
