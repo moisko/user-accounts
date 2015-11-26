@@ -35,7 +35,7 @@
 					<th>DELETE</th>
 				</tr>
 			</thead>
-			<tbody></tbody>
+			<tbody/>
 		</table>
 	</div>
 
