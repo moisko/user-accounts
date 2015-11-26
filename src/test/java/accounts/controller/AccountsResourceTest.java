@@ -105,7 +105,7 @@ public class AccountsResourceTest {
 
 		when(servletContext.getAttribute("emf")).thenReturn(emf);
 
-		// Set ServletContext and ServletConfig as properties to Message
+		// Set ServletContext as properties to Message
 		server.getEndpoint().getInInterceptors()
 				.add(new PreInvokeInInterceptor(servletContext));
 	}
