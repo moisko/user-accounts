@@ -84,7 +84,7 @@ var app = {};
 				};
 
 				var d = new Date(dateTimeInMillis);
-7				var date = d.getDate();
+				var date = d.getDate();
 				var month = d.getMonth();
 				var fullYear = d.getFullYear();
 				var hh = d.getHours();
