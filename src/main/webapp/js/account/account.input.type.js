@@ -19,7 +19,7 @@ $.editable.addInputType("account", {
 					input = "<input id=\"" + id + "\" type=\"text\" size=\"12\" class=\"required\">";
 				break;
 				default:
-					throw "Could not create control of type [" + type + "]";
+					throw new Error("Could not create control of type [" + type + "]");
 				break;
 			}
 			return input;
@@ -38,7 +38,7 @@ $.editable.addInputType("account", {
 					control = createInputTypeControl(id, "datetime-local");
 				break;
 				default:
-					throw "No account property defined for [" + accountProperty + "]";
+					throw new Error("No account property defined for [" + accountProperty + "]");
 				break;
 			}
 			return $(control);

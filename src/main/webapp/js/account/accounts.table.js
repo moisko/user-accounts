@@ -1,6 +1,6 @@
 "use strict";
 
-var AccountsTable = AccountsTable || {};
+var accounts = accounts || {};
 
 (function(exports) {
 
@@ -17,7 +17,7 @@ var AccountsTable = AccountsTable || {};
 						"firstName" : $("#first-name").val(),
 						"lastName" : $("#last-name").val(),
 						"email" : $("#email").val(),
-						"dateOfBirth" : LocalDateTime.parse($("#date-of-birth").val())
+						"dateOfBirth" : datetime.parse($("#date-of-birth").val())
 					}),
 					success : function(account) {
 						dataTable.fnAddData([ account.firstName,
@@ -25,7 +25,7 @@ var AccountsTable = AccountsTable || {};
 						                      account.email,
 						                      account.dateOfBirth,
 						                      account.id ]);
-						AddAccountForm.clear();
+						form.clearAddAccountForm();
 					},
 					error : function(xhr, status) {
 						alert("Failed to add account.\nServer returned: " + xhr.statusText + "-" + xhr.responseText);
@@ -45,7 +45,7 @@ var AccountsTable = AccountsTable || {};
 					}
 				});
 			},
-			populateAccountsTable: function populateAccountsTable(dataTable) {
+			populate: function populate(dataTable) {
 				$.ajax({
 					url : "/user-accounts/accounts/",
 					type : "GET",
@@ -71,4 +71,4 @@ var AccountsTable = AccountsTable || {};
 		$.extend(exports, api);
 	}((typeof exports === "undefined") ? window : exports));
 
-}(AccountsTable));
+}(accounts));

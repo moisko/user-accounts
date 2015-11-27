@@ -10,9 +10,9 @@ $(document).ready(function() {
 			{
 				"aTargets" : [3],// DATE OF BIRTH column
 				"mRender" : function(datetimeInMillis) {
-								return LocalDateTime.toLocalDateTimeString(datetimeInMillis);
+								return datetime.toLocalDateTime(datetimeInMillis);
 							},
-				"sType" : "date-bg"// Sort by using the custom defined function
+				"sType" : "date-bg"
 			},
 			{
 				"aTargets" : [4],// DELETE column
@@ -63,7 +63,7 @@ $(document).ready(function() {
 				"callback" : function(updatedValue) {
 					function convertUpdatedValueToColumnType(column) {
 						if(column === 3) {// DELETE column
-							return LocalDateTime.parse(updatedValue);
+							return datetime.parse(updatedValue);
 						}
 						return updatedValue;
 					};
@@ -82,13 +82,13 @@ $(document).ready(function() {
 		}
 	});
 
-	AccountsTable.populateAccountsTable(dataTable);
+	accounts.populate(dataTable);
 
 	dataTable.delegate("tbody tr td a", "click", function(event) {
 		event.preventDefault();
 		if(confirm("Are you sure you want to delete this account?") === true) {
 			var tableRow = $(this).parent().parent();
-			AccountsTable.deleteAccount(dataTable, tableRow);
+			accounts.deleteAccount(dataTable, tableRow);
 		}
 	});
 
@@ -98,6 +98,6 @@ $(document).ready(function() {
 
 	$("#add-account-form").submit(function(event) {
 		event.preventDefault();
-		AccountsTable.addAccount(dataTable);
+		accounts.addAccount(dataTable);
 	});
 });

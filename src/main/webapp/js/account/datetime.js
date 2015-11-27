@@ -1,6 +1,6 @@
 "use strict";
 
-var LocalDateTime = LocalDateTime || {};
+var datetime = datetime || {};
 
 (function(exports) {
 
@@ -33,7 +33,7 @@ var LocalDateTime = LocalDateTime || {};
 				var date = new Date(dateTimeInMillis);
 				return date;
 			},
-			toLocalDateTimeString : function(dateTimeInMillis) {
+			toLocalDateTime : function(dateTimeInMillis) {
 
 				function formatMinute(minute) {
 					if (minute >= 0 && minute <= 9) {
@@ -83,4 +83,4 @@ var LocalDateTime = LocalDateTime || {};
 		$.extend(exports, api);
 	}((typeof exports === "undefined") ? window : exports));
 
-}(LocalDateTime));
+}(datetime));
