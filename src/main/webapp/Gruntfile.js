@@ -4,19 +4,19 @@ module.exports = function(grunt) {
 		concat : {
 			js : {
 				files : {
-					'build/js/bundle.js': 'js/account/*.js'
+					'build/js/account/bundle.js': 'js/account/*.js'
 				}
 			}
 		},
 		uglify : {
 			bundle : {
 				files : {
-					'build/js/bundle.min.js': 'build/js/bundle.js'
+					'build/js/account/bundle.min.js': 'build/js/account/bundle.js'
 				}
 			}
 		},
 		clean : {
-			js : 'build/js/bundle.js'
+			js : 'build/js/account/bundle.js'
 		}
 	});
 	grunt.loadNpmTasks('grunt-contrib-jshint');
