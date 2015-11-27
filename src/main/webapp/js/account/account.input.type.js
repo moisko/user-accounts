@@ -1,13 +1,12 @@
-"use strict";
-
 $.editable.addInputType("account", {
 	element : function(settings, original) {
+		"use strict";
 
 		function getAccountProperty(id) {
 			var tokens = id.split("_");
 			var accountProperty = tokens[0];
 			return accountProperty;
-		};
+		}
 
 		function createInputTypeControl(id, type) {
 			var input;
@@ -20,10 +19,9 @@ $.editable.addInputType("account", {
 				break;
 				default:
 					throw new Error("Could not create control of type [" + type + "]");
-				break;
 			}
 			return input;
-		};
+		}
 
 		function createControl(id) {
 			var control;
@@ -39,10 +37,9 @@ $.editable.addInputType("account", {
 				break;
 				default:
 					throw new Error("No account property defined for [" + accountProperty + "]");
-				break;
 			}
 			return $(control);
-		};
+		}
 
 		var id = original.getAttribute("id");
 		var control = createControl(id);
@@ -50,6 +47,8 @@ $.editable.addInputType("account", {
 		return (control);
 	},
 	plugin : function(settings, original) {
+		"use strict";
+
 		var id = original.getAttribute("id");
 		if(id.indexOf("dateOfBirth", 0) === 0) {
 			$("input", this).datetimepicker({

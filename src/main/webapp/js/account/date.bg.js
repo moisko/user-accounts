@@ -1,6 +1,6 @@
-"use strict";
-
 $.fn.dataTableExt.oSort["date-bg-asc"] = function(dateTimeStringA, dateTimeStringB) {
+	"use strict";
+
 	var dateA = datetime.toDate(dateTimeStringA);
 	var dateB = datetime.toDate(dateTimeStringB);
 	if(dateA > dateB) return 1;
@@ -9,6 +9,8 @@ $.fn.dataTableExt.oSort["date-bg-asc"] = function(dateTimeStringA, dateTimeStrin
 };
 
 $.fn.dataTableExt.oSort["date-bg-desc"] = function(dateTimeStringA, dateTimeStringB) {
+	"use strict";
+
 	var dateA = datetime.toDate(dateTimeStringA);
 	var dateB = datetime.toDate(dateTimeStringB);
 	if(dateA > dateB) return -1;

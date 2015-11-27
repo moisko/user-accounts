@@ -71,12 +71,16 @@
 <script src="js/vendor/bootstrap.min.js"></script>
 <script src="js/vendor/dataTables.bootstrap.min.js"></script>
 
+<!--
 <script src="js/account/datetime.js"></script>
 <script src="js/account/accounts.form.js"></script>
 <script src="js/account/accounts.table.js"></script>
 <script src="js/account/account.input.type.js"></script>
 <script src="js/account/date.bg.js"></script>
 <script src="js/account/index.js"></script>
+-->
+
+<script src="build/js/bundle.min.js"></script>
 
 </body>
 </html>

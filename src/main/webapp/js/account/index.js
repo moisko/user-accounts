@@ -1,6 +1,5 @@
-"use strict";
-
 $(document).ready(function() {
+	"use strict";
 
 	// jQuery DataTables
 
@@ -28,7 +27,7 @@ $(document).ready(function() {
 		"fnRowCallback" : function(nRow, aData, iStart, iEnd, aiDisplay) {
 			var id = $("td a", nRow).attr("id");
 			var tdElements = $("td", nRow);
-			for(let index = 0; index < tdElements.length; index++) {
+			for(var index = 0; index < tdElements.length; index++) {
 				var tdElement = tdElements[index];
 				switch(index) {
 					case 0:
@@ -52,7 +51,6 @@ $(document).ready(function() {
 					break;
 					default:
 						throw "Invalid column index [" + index + "]";
-					break;
 				}
 			}
 		},
@@ -66,7 +64,8 @@ $(document).ready(function() {
 							return datetime.parse(updatedValue);
 						}
 						return updatedValue;
-					};
+					}
+
 					var position = dataTable.fnGetPosition(this);
 					var row = position[0];
 					var column = position[1];

@@ -1,10 +1,9 @@
-"use strict";
-
 var accounts = accounts || {};
 
 (function(exports) {
 
 	(function(exports) {
+		"use strict";
 
 		var api = {
 			addAccount: function addAccount(dataTable) {

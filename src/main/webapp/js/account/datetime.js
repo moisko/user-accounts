@@ -1,10 +1,9 @@
-"use strict";
-
 var datetime = datetime || {};
 
 (function(exports) {
 
 	(function(exports) {
+		"use strict";
 
 		var api = {
 			parse : function(dateTimeString) {
@@ -12,7 +11,7 @@ var datetime = datetime || {};
 				function decreaseMonth(month) {
 					var m = parseInt(month, 10);
 					return --m;
-				};
+				}
 
 				var splittedLocalDateTime = dateTimeString.split(" ");
 				var localDate = splittedLocalDateTime[0];
@@ -40,33 +39,33 @@ var datetime = datetime || {};
 						minute = "0" + minute;
 					}
 					return minute;
-				};
+				}
 
 				function formatHour(hour) {
 					if (hour >= 0 && hour <= 9) {
 						hour = "0" + hour;
 					}
 					return hour;
-				};
+				}
 
 				function formatDate(date) {
 					if (date >= 1 && date <= 9) {
 						date = "0" + date;
 					}
 					return date;
-				};
+				}
 
 				function formatMonth(month) {
 					if (month >= 1 && month <= 9) {
 						month = "0" + month;
 					}
 					return month;
-				};
+				}
 
 				function increaseMonth(month) {
 					var m = parseInt(month, 10);
 					return ++m;
-				};
+				}
 
 				var d = new Date(dateTimeInMillis);
 				var date = d.getDate();
