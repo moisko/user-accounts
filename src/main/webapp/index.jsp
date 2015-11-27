@@ -73,7 +73,9 @@
 <script src="js/account/datetime.js"></script>
 <script src="js/account/accounts.form.js"></script>
 <script src="js/account/accounts.table.js"></script>
-<script src="js/account/accounts.js"></script>
+<script src="js/account/account.input.type.js"></script>
+<script src="js/account/date.bg.js"></script>
+<script src="js/account/index.js"></script>
 
 </body>
 </html>
