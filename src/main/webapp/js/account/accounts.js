@@ -67,16 +67,16 @@ $(document).ready(function() {
 	// Custom ascending and descending sorting by dates
 
 	$.fn.dataTableExt.oSort["date-bg-asc"] = function(dateTimeStringA, dateTimeStringB) {
-		var dateA = app.toDate(dateTimeStringA);
-		var dateB = app.toDate(dateTimeStringB);
+		var dateA = LocalDateTime.toDate(dateTimeStringA);
+		var dateB = LocalDateTime.toDate(dateTimeStringB);
 		if(dateA > dateB) return 1;
 		if(dateA < dateB) return -1;
 		return 0;
 	};
 
 	$.fn.dataTableExt.oSort["date-bg-desc"] = function(dateTimeStringA, dateTimeStringB) {
-		var dateA = app.toDate(dateTimeStringA);
-		var dateB = app.toDate(dateTimeStringB);
+		var dateA = LocalDateTime.toDate(dateTimeStringA);
+		var dateB = LocalDateTime.toDate(dateTimeStringB);
 		if(dateA > dateB) return -1;
 		if(dateA < dateB) return 1;
 		return 0;
@@ -90,7 +90,7 @@ $(document).ready(function() {
 			{
 				"aTargets" : [3],// DATE OF BIRTH column
 				"mRender" : function(datetimeInMillis) {
-								return app.toLocalDateTimeString(datetimeInMillis);
+								return LocalDateTime.toLocalDateTimeString(datetimeInMillis);
 							},
 				"sType" : "date-bg"// Sort by using the custom defined function
 			},
@@ -143,7 +143,7 @@ $(document).ready(function() {
 				"callback" : function(updatedValue) {
 					function convertUpdatedValueToColumnType(column) {
 						if(column === 3) {// DELETE column
-							return app.parse(updatedValue);
+							return LocalDateTime.parse(updatedValue);
 						}
 						return updatedValue;
 					};
@@ -162,13 +162,13 @@ $(document).ready(function() {
 		}
 	});
 
-	app.populateAccountsTable(dataTable);
+	AccountsTable.populateAccountsTable(dataTable);
 
 	dataTable.delegate("tbody tr td a", "click", function(event) {
 		event.preventDefault();
-		if(confirm("Are you sure you want to delete this account") === true) {
+		if(confirm("Are you sure you want to delete this account?") === true) {
 			var tableRow = $(this).parent().parent();
-			app.deleteAccount(dataTable, tableRow);
+			AccountsTable.deleteAccount(dataTable, tableRow);
 		}
 	});
 
@@ -178,6 +178,6 @@ $(document).ready(function() {
 
 	$("#add-account-form").submit(function(event) {
 		event.preventDefault();
-		app.addAccount(dataTable);
+		AccountsTable.addAccount(dataTable);
 	});
 });

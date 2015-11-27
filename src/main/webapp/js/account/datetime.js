@@ -1,6 +1,6 @@
 "use strict";
 
-var app = app || {};
+var LocalDateTime = LocalDateTime || {};
 
 (function(exports) {
 
@@ -29,6 +29,7 @@ var app = app || {};
 				return dateTimeInMillis.getTime();
 			},
 			toDate : function(dateTimeString) {
+
 				function decreaseMonth(month) {
 					var m = parseInt(month, 10);
 					return --m;
@@ -98,4 +99,4 @@ var app = app || {};
 		$.extend(exports, api);
 	}((typeof exports === "undefined") ? window : exports));
 
-}(app));
+}(LocalDateTime));

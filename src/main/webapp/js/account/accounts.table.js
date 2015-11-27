@@ -1,6 +1,6 @@
 "use strict";
 
-var app = app || {};
+var AccountsTable = AccountsTable || {};
 
 (function(exports) {
 
@@ -17,7 +17,7 @@ var app = app || {};
 						"firstName" : $("#first-name").val(),
 						"lastName" : $("#last-name").val(),
 						"email" : $("#email").val(),
-						"dateOfBirth" : app.parse($("#date-of-birth").val())
+						"dateOfBirth" : LocalDateTime.parse($("#date-of-birth").val())
 					}),
 					success : function(account) {
 						dataTable.fnAddData([ account.firstName,
@@ -25,7 +25,7 @@ var app = app || {};
 						                      account.email,
 						                      account.dateOfBirth,
 						                      account.id ]);
-						app.clearAddAccountForm();
+						AddAccountForm.clear();
 					},
 					error : function(xhr, status) {
 						alert("Failed to add account.\nServer returned: " + xhr.statusText + "-" + xhr.responseText);
@@ -71,4 +71,4 @@ var app = app || {};
 		$.extend(exports, api);
 	}((typeof exports === "undefined") ? window : exports));
 
-}(app));
+}(AccountsTable));

@@ -1,13 +1,13 @@
 "use-strict";
 
-var app = app || {};
+var AddAccountForm = AddAccountForm || {};
 
 (function(exports) {
 
 	(function(exports) {
 
 		var api = {
-			clearAddAccountForm: function clearAddAccountForm() {
+			clear: function clear() {
 				$("#first-name").val("");
 				$("#last-name").val("");
 				$("#email").val("");
@@ -18,4 +18,4 @@ var app = app || {};
 		$.extend(exports, api);
 	}((typeof exports === "undefined") ? window : exports));
 
-}(app));
+}(AddAccountForm));
