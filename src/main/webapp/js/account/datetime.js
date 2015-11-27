@@ -29,24 +29,8 @@ var LocalDateTime = LocalDateTime || {};
 				return dateTimeInMillis.getTime();
 			},
 			toDate : function(dateTimeString) {
-
-				function decreaseMonth(month) {
-					var m = parseInt(month, 10);
-					return --m;
-				};
-
-				var splittedLocalDateTime = dateTimeString.split(" ");
-				var localDate = splittedLocalDateTime[0];
-				var splittedDate = localDate.split("/");
-				var date = splittedDate[0];
-				var month = splittedDate[1];
-				var year = splittedDate[2];
-				var time = splittedLocalDateTime[1];
-				var splittedTime = time.split(":");
-				var hh = splittedTime[0];
-				var mm = splittedTime[1];
-				var date = new Date(year, decreaseMonth(month), date, hh, mm);
-
+				var dateTimeInMillis = this.parse(dateTimeString);
+				var date = new Date(dateTimeInMillis);
 				return date;
 			},
 			toLocalDateTimeString : function(dateTimeInMillis) {
