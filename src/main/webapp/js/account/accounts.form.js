@@ -1,12 +1,11 @@
-"use-strict";
-
 var form = form || {};
 
 (function(exports) {
 
 	(function(exports) {
+		"use-strict";
 
-		var api = {
+		var formApi = {
 			clearAddAccountForm : function clearAddAccountForm() {
 				$("#first-name").val("");
 				$("#last-name").val("");
@@ -15,7 +14,7 @@ var form = form || {};
 			}
 		};
 
-		$.extend(exports, api);
+		$.extend(exports, formApi);
 	}((typeof exports === "undefined") ? window : exports));
 
 }(form));

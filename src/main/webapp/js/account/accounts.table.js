@@ -5,7 +5,7 @@ var accounts = accounts || {};
 	(function(exports) {
 		"use strict";
 
-		var api = {
+		var accountsTableApi = {
 			addAccount: function addAccount(dataTable) {
 				$.ajax({
 					url : "/user-accounts/accounts",
@@ -44,7 +44,7 @@ var accounts = accounts || {};
 					}
 				});
 			},
-			populate: function populate(dataTable) {
+			init: function populate(dataTable) {
 				$.ajax({
 					url : "/user-accounts/accounts/",
 					type : "GET",
@@ -67,7 +67,7 @@ var accounts = accounts || {};
 			}
 		};
 
-		$.extend(exports, api);
+		$.extend(exports, accountsTableApi);
 	}((typeof exports === "undefined") ? window : exports));
 
 }(accounts));

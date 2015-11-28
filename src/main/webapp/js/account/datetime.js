@@ -5,7 +5,7 @@ var datetime = datetime || {};
 	(function(exports) {
 		"use strict";
 
-		var api = {
+		var datetimeApi = {
 			parse : function(dateTimeString) {
 
 				function decreaseMonth(month) {
@@ -79,7 +79,7 @@ var datetime = datetime || {};
 			}
 		};
 
-		$.extend(exports, api);
+		$.extend(exports, datetimeApi);
 	}((typeof exports === "undefined") ? window : exports));
 
 }(datetime));

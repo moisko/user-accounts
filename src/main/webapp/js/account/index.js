@@ -81,7 +81,7 @@ $(document).ready(function() {
 		}
 	});
 
-	accounts.populate(dataTable);
+	accounts.init(dataTable);
 
 	dataTable.delegate("tbody tr td a", "click", function(event) {
 		event.preventDefault();
