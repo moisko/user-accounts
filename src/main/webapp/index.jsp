@@ -70,6 +70,8 @@
 
 <script src="js/vendor/bootstrap.min.js"></script>
 <script src="js/vendor/dataTables.bootstrap.min.js"></script>
+<script src="js/vendor/dataTables.responsive.min.js"></script>
+<script src="js/vendor/responsive.bootstrap.min.js"></script>
 
 <!--
 <script src="js/account/datetime.js"></script>
