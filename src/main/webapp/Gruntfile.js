@@ -24,5 +24,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 
-	grunt.registerTask('default', [ 'jshint', 'concat:js', 'uglify:bundle', 'clean:js' ]);
+	grunt.registerTask('dist', [ 'jshint', 'concat:js', 'uglify:bundle', 'clean:js' ]);
 };
