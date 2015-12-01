@@ -147,7 +147,7 @@
 					<packagingExcludes>
 						package.json,
 						Gruntfile.js,
-						js/account/**,
+						js/**,
 						node_modules/**
 					</packagingExcludes>
 				</configuration>

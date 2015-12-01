@@ -9,10 +9,10 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.4.5/jquery.datetimepicker.min.css">
 
-<link rel="stylesheet" type="text/css" href="css/vendor/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/vendor/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="build/css/vendor/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="build/css/vendor/dataTables.bootstrap.min.css">
 
-<link rel="stylesheet" type="text/css" href="css/account/index.css">
+<link rel="stylesheet" type="text/css" href="build/css/account/index.css">
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -68,10 +68,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jeditable.js/1.7.3/jeditable.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.66.0-2013.10.09/jquery.blockUI.min.js"></script>
 
-<script src="js/vendor/bootstrap.min.js"></script>
-<script src="js/vendor/dataTables.bootstrap.min.js"></script>
-<script src="js/vendor/dataTables.responsive.min.js"></script>
-<script src="js/vendor/responsive.bootstrap.min.js"></script>
+<script src="build/js/vendor/bootstrap.min.js"></script>
+<script src="build/js/vendor/dataTables.bootstrap.min.js"></script>
+<script src="build/js/vendor/dataTables.responsive.min.js"></script>
+<script src="build/js/vendor/responsive.bootstrap.min.js"></script>
 
 <!--
 <script src="js/account/datetime.js"></script>
