@@ -22,6 +22,15 @@
 </head>
 <body>
 <div class="container">
+
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h1>User Accounts Table</h1>
+		</div>
+	</div>
+
+	<br />
+
 	<div class="row">
 		<table id="accounts-table" class="table table-striped table-bordered">
 			<thead>
