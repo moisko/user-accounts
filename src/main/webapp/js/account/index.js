@@ -22,7 +22,16 @@ $(document).ready(function() {
 			}
 		],
 		"fnHeaderCallback" : function(nHead, aData, iStart, iEnd, aiDisplay) {
-			nHead.getElementsByTagName("th")[0].innerHTML = (iEnd - iStart) + " Accounts";
+			var accounts = (iEnd - iStart);
+			var header;
+			if(accounts === 1) {
+				header = accounts + " Account";
+			} else if(accounts > 1) {
+				header = accounts + " Accounts";
+			} else {
+				header = "User Accounts Table Empty";
+			}
+			nHead.getElementsByTagName("th")[0].innerHTML = header;
 		},
 		"fnRowCallback" : function(nRow, aData, iStart, iEnd, aiDisplay) {
 			var id = $("td a", nRow).attr("id");
