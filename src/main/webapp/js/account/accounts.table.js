@@ -44,7 +44,7 @@ var accounts = accounts || {};
 					}
 				});
 			},
-			init: function populate(dataTable) {
+			init: function init(dataTable) {
 				$.ajax({
 					url : "/user-accounts/accounts/",
 					type : "GET",
