@@ -78,7 +78,7 @@ public class AccountsResource implements Accounts {
 		AccountDAO accountDAO = new AccountDAO(emf);
 		accountDAO.deleteAccount(id);
 		JsonObject jsonResponseObject = new JsonObject();
-		jsonResponseObject.add("accountId", new JsonPrimitive(id));
+		jsonResponseObject.add("id", new JsonPrimitive(id));
 		return Response.status(Status.OK).entity(jsonResponseObject).build();
 	}
 

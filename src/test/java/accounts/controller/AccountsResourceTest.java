@@ -502,7 +502,7 @@ public class AccountsResourceTest {
 		assertTrue(response.getStatus() == 200);
 
 		String responseString = readResponse((InputStream) response.getEntity());
-		assertTrue(responseString.contains("accountId"));
+		assertTrue(responseString.contains("id"));
 		assertTrue(responseString.contains(":1"));
 	}
 
