@@ -6,7 +6,7 @@ var datetime = datetime || {};
 		"use strict";
 
 		var datetimeApi = {
-			parse : function(dateTimeString) {
+			parse: function(dateTimeString) {
 
 				function decreaseMonth(month) {
 					var m = parseInt(month, 10);
@@ -27,12 +27,12 @@ var datetime = datetime || {};
 
 				return dateTimeInMillis.getTime();
 			},
-			toDate : function(dateTimeString) {
+			toDate: function(dateTimeString) {
 				var dateTimeInMillis = this.parse(dateTimeString);
 				var date = new Date(dateTimeInMillis);
 				return date;
 			},
-			toLocalDateTime : function(dateTimeInMillis) {
+			toLocalDateTime: function(dateTimeInMillis) {
 
 				function formatMinute(minute) {
 					if (minute >= 0 && minute <= 9) {
@@ -73,7 +73,7 @@ var datetime = datetime || {};
 				var fullYear = d.getFullYear();
 				var hh = d.getHours();
 				var mm = d.getMinutes();
-				var localDateTimeString = formatDate(date)+ "/" + formatMonth(increaseMonth(month)) + "/" + fullYear + " " + formatHour(hh) + ":" + formatMinute(mm);
+				var localDateTimeString = formatDate(date) + "/" + formatMonth(increaseMonth(month)) + "/" + fullYear + " " + formatHour(hh) + ":" + formatMinute(mm);
 
 				return localDateTimeString;
 			}

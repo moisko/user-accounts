@@ -6,7 +6,7 @@ var form = form || {};
 		"use-strict";
 
 		var formApi = {
-			clearAddAccountForm : function clearAddAccountForm() {
+			clearAddAccountForm: function clearAddAccountForm() {
 				$("#first-name").val("");
 				$("#last-name").val("");
 				$("#email").val("");

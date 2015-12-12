@@ -1,5 +1,5 @@
 $.editable.addInputType("account", {
-	element : function(settings, original) {
+	element: function(settings, original) {
 		"use strict";
 
 		function getAccountProperty(id) {
@@ -10,13 +10,13 @@ $.editable.addInputType("account", {
 
 		function createInputTypeControl(id, type) {
 			var input;
-			switch(type) {
+			switch (type) {
 				case "text":
 					input = "<input id=\"" + id + "\" type=\"text\" min=\"1\" max=\"50\" size=\"15\" class=\"required\">";
-				break;
+					break;
 				case "datetime-local":
 					input = "<input id=\"" + id + "\" type=\"text\" size=\"12\" class=\"required\">";
-				break;
+					break;
 				default:
 					throw new Error("Could not create control of type [" + type + "]");
 			}
@@ -26,15 +26,15 @@ $.editable.addInputType("account", {
 		function createControl(id) {
 			var control;
 			var accountProperty = getAccountProperty(id);
-			switch(accountProperty) {
+			switch (accountProperty) {
 				case "firstName":
 				case "lastName":
 				case "email":
 					control = createInputTypeControl(id, "text");
-				break;
+					break;
 				case "dateOfBirth":
 					control = createInputTypeControl(id, "datetime-local");
-				break;
+					break;
 				default:
 					throw new Error("No account property defined for [" + accountProperty + "]");
 			}
@@ -46,14 +46,14 @@ $.editable.addInputType("account", {
 		$(this).append(control);
 		return (control);
 	},
-	plugin : function(settings, original) {
+	plugin: function(settings, original) {
 		"use strict";
 
 		var id = original.getAttribute("id");
-		if(id.indexOf("dateOfBirth", 0) === 0) {
+		if (id.indexOf("dateOfBirth", 0) === 0) {
 			$("input", this).datetimepicker({
-				format : "d/m/Y H:i",
-				step : 10
+				format: "d/m/Y H:i",
+				step: 10
 			});
 		}
 	}
