@@ -59,7 +59,7 @@ $(document).ready(function() {
 						tdElement.setAttribute("class", "delete");
 						break;
 					default:
-						throw "Invalid column index [" + index + "]";
+						throw new Error("Invalid column index [" + index + "]");
 				}
 			}
 		},
