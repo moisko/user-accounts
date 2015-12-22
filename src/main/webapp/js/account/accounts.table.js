@@ -32,13 +32,14 @@ var accounts = accounts || {};
 					}
 				});
 			},
-			deleteAccount: function deleteAccount(dataTable, tableRow) {
-				var accountId = tableRow.find("td a").attr("id");
+			deleteAccount: function deleteAccount(dataTable, id) {
 				$.ajax({
 					type: "DELETE",
-					url: "/user-accounts/accounts/" + accountId,
+					url: "/user-accounts/accounts/" + id,
 					success: function(data) {
-						dataTable.fnDeleteRow(tableRow);
+						var id = data.id;
+						var tr = $("#" + id);
+						dataTable.fnDeleteRow(tr);
 					},
 					error: function(xhr, status) {
 						alert("Failed to delete account.\nServer returned: " + xhr.statusText + "-" + xhr.responseText);

@@ -82,16 +82,17 @@
 <script src="build/js/vendor/dataTables.responsive.min.js"></script>
 <script src="build/js/vendor/responsive.bootstrap.min.js"></script>
 
-<!--
+<!-- For debug -->
+
 <script src="js/account/datetime.js"></script>
 <script src="js/account/accounts.form.js"></script>
 <script src="js/account/accounts.table.js"></script>
 <script src="js/account/account.input.type.js"></script>
 <script src="js/account/date.bg.js"></script>
 <script src="js/account/index.js"></script>
--->
 
+<!-- 
 <script src="build/js/account/bundle.min.js"></script>
-
+ -->
 </body>
 </html>

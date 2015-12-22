@@ -34,6 +34,7 @@ $(document).ready(function() {
 		},
 		"fnRowCallback": function(nRow, aData, iStart, iEnd, aiDisplay) {
 			var id = $("td a", nRow).attr("id");
+			nRow.setAttribute("id", id);
 			var tdElements = $("td", nRow);
 			for (var index = 0; index < tdElements.length; index++) {
 				var tdElement = tdElements[index];
@@ -94,8 +95,9 @@ $(document).ready(function() {
 	dataTable.delegate("tbody tr td a", "click", function(event) {
 		event.preventDefault();
 		if (confirm("Are you sure you want to delete this account?") === true) {
-			var tableRow = $(this).parent().parent();
-			accounts.deleteAccount(dataTable, tableRow);
+			var tr = $(this).parent().parent();
+			var id = tr.attr("id");
+			accounts.deleteAccount(dataTable, id);
 		}
 	});
 
