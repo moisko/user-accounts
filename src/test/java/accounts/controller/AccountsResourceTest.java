@@ -105,7 +105,7 @@ public class AccountsResourceTest {
 
 		when(servletContext.getAttribute("emf")).thenReturn(emf);
 
-		// Set ServletContext as properties to Message
+		// Set ServletContext as a property to Message
 		server.getEndpoint().getInInterceptors()
 				.add(new PreInvokeInInterceptor(servletContext));
 	}
@@ -152,7 +152,6 @@ public class AccountsResourceTest {
 		webClient.accept(MediaType.APPLICATION_JSON).type(
 				MediaType.APPLICATION_JSON_TYPE);
 
-		// Message body - Account without firstName
 		Account account = createSingleAccount();
 
 		// Make a POST request to create an account
