@@ -32,7 +32,7 @@ Setup
 
 * create <i>account_schema</i> db schema before deploying and starting the application
 
-* In server.xml, add the following context configuration and replace with the correct values for username and password:
+* In <i>server.xml</i>, add the following context configuration and replace with the correct values for username and password:
 ```xml
 <Context docBase="user-accounts" path="/user-accounts" reloadable="true" source="org.eclipse.jst.jee.server:user-accounts">
 	<Resource driverClassName="com.mysql.jdbc.Driver"
