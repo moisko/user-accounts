@@ -1,22 +1,16 @@
 # user-accounts
 
-* URL - http://boratino.com/user-accounts/
-
-* Jenkins build - http://www.boratino.com/jenkins/
-<br />
-	-> project - <b>user-accounts</b>
-<br />
-	-> username/password - <b>westernacher/westernacher</b>
+* URL - http://borisborisov.bg/user-accounts
 
 * Code coverage - 79.7%
 
 Environment
 -----------
-* Java 7
+* Java 8
 
 * Services Framework - Apache CXF
 
-* Application Server - Tomcat 7
+* Application Server - Tomcat 8
 
 * Database - MySQL
 
