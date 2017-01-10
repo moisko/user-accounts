@@ -18,15 +18,17 @@ Environment
 
 * Sortable Grid - jQuery DataTables
 
-* CSS Framework - Bootstrap
+* CSS Framework - Bootstrap 3
 
 Setup
 -----
-* Connector/j driver should be installed in <i>$CATALINA_HOME/lib</i> dir
+* Connector/j mysql driver should be installed in <i>$CATALINA_HOME/lib</i> dir
 
 * create <i>account_schema</i> db schema before deploying and starting the application
 
-* In <i>server.xml</i>, add the following context configuration and replace with the correct values for username and password:
+* create a user and grant permissions to <i>account_schema</i>
+
+* Edit <i>server.xml</i>, add the following context configuration and replace with the correct values for username and password:
 ```xml
 <Context docBase="user-accounts" path="/user-accounts" reloadable="true" source="org.eclipse.jst.jee.server:user-accounts">
 	<Resource driverClassName="com.mysql.jdbc.Driver"
@@ -49,7 +51,6 @@ Setup
 		validationQuery="select 1" />
 </Context>
 ```
-* get latest development version from Jenkins CI server
 
 * copy the war file into webapps dir
 
