@@ -1,26 +1,9 @@
 package accounts.controller;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-import javax.servlet.ServletContext;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Form;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
+import accounts.exception.IllegalArgumentExceptionMapper;
+import accounts.exception.NoResultExceptionMapper;
+import accounts.gson.GsonJsonProvider;
+import accounts.model.Account;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.client.WebClient;
@@ -33,10 +16,25 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import accounts.exception.IllegalArgumentExceptionMapper;
-import accounts.exception.NoResultExceptionMapper;
-import accounts.gson.GsonJsonProvider;
-import accounts.model.Account;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import javax.servlet.ServletContext;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Form;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AccountsResourceTest {
@@ -59,7 +57,7 @@ public class AccountsResourceTest {
 	@Mock
 	Query querySingleAccount;
 
-	private static final String ADDRESS = "http://localhost:8080/user-accounts/accounts/";
+	private static final String ADDRESS = "http://localhost:8088/user-accounts/accounts/";
 
 	private static Server server;
 
